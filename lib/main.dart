@@ -5,6 +5,8 @@ import 'package:hospital_managment_app/screens/home_page.dart';
 import 'package:hospital_managment_app/screens/landing_page.dart';
 import 'package:hospital_managment_app/screens/auth/sign_in.dart';
 import 'package:hospital_managment_app/screens/auth/sign_up.dart';
+import 'package:hospital_managment_app/styles/palette.dart';
+import 'package:hospital_managment_app/wrapper/app_lifecycle.dart';
 
 //Since using print() will reduce the app's performance we can use this
 import 'package:logging/logging.dart';
@@ -14,6 +16,9 @@ import 'package:flutter/foundation.dart';
 
 //To create routes within our application
 import 'package:go_router/go_router.dart';
+
+//To manage state within the app
+import 'package:provider/provider.dart';
 
 void main() {
   if (kDebugMode) {
@@ -40,6 +45,7 @@ void main() {
 Logger _log = Logger('main.dart');
 
 class MyApp extends StatelessWidget {
+  //This contains all the routes of our app (atleast what we are using now)
   static final _router = GoRouter(routes: <RouteBase>[
     GoRoute(
         path: '/',
@@ -59,7 +65,6 @@ class MyApp extends StatelessWidget {
             path: 'forgot-password',
             builder: (context, state) => const SignUpPage(),
           ),
-          
         ]),
     GoRoute(
         path: "/home",
@@ -99,15 +104,37 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          primarySwatch: Colors.pink,
-          primaryColor: Colors.deepPurple,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          fontFamily: 'Poppins'),
-      home: const HomePage(),
-      debugShowCheckedModeBanner: false,
+    return AppLifecycleObserver(
+      child: MultiProvider(
+        providers: [
+          /// ChangeNotifierProvider(create: (_) => Counter()),
+          ///
+          /// Providing the palette to the whole application. To access it, just use
+          /// final palette = context.watch<Palette>();
+          Provider(
+            create: (context) => Palette(),
+          ),
+        ],
+        child: Builder(builder: (context) {
+          final palette = context.watch<Palette>();
+          return MaterialApp.router(
+            title: 'Flutter Demo',
+            theme: ThemeData.from(
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: palette.darkPen,
+                background: palette.backgroundMain,
+              ),
+              textTheme: TextTheme(
+                bodyMedium: TextStyle(
+                  color: palette.ink,
+                ),
+              ),
+            ),
+            routerConfig: _router,
+            debugShowCheckedModeBanner: false,
+          );
+        }),
+      ),
     );
   }
 }

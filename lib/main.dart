@@ -21,6 +21,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   if (kDebugMode) {
     // Log more when in debug mode.
     Logger.root.level = Level.FINE;
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
     GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) =>
-            const LandingPage(),
+            const HomePage(),
         routes: [
           GoRoute(
             path: 'sing-in',
@@ -121,12 +122,12 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             theme: ThemeData.from(
               colorScheme: ColorScheme.fromSeed(
-                seedColor: palette.darkPen,
+                seedColor: palette.darkViolet,
                 background: palette.backgroundMain,
               ),
               textTheme: TextTheme(
                 bodyMedium: TextStyle(
-                  color: palette.ink,
+                  color: palette.trueWhite,
                 ),
               ),
             ),

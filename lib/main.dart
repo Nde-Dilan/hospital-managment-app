@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hospital_managment_app/screens/home/appointements.dart';
 import 'package:hospital_managment_app/screens/home_page.dart';
-import 'package:hospital_managment_app/screens/landing_page.dart';
 import 'package:hospital_managment_app/screens/auth/sign_in.dart';
 import 'package:hospital_managment_app/screens/auth/sign_up.dart';
 import 'package:hospital_managment_app/styles/palette.dart';

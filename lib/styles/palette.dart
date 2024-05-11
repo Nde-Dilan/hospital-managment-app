@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 class Palette {
   Color get violet => const Color(0xff7B61FF);
   Color get darkViolet => const Color(0xFF4531AC);
+  Color get category => const Color(0xFF7B61FF);
   Color get backgroundMain => const Color(0xffF8FAFF);
   Color get textDark => const Color(0xff000000);
   Color get congrasColor => const Color(0xff0B72AC);

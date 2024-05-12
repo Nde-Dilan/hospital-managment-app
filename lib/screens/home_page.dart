@@ -34,11 +34,12 @@ class HomePage extends StatelessWidget {
           //  overflow: Overflow.visible,
           // fit: StackFit.expand,
           clipBehavior: Clip.none,
-          alignment: AlignmentDirectional.bottomCenter,
+          alignment: AlignmentDirectional.topCenter,
           children: [
+            
             Container(
               width: MediaQuery.of(context).size.width,
-              // height: 120,
+              height: MediaQuery.of(context).size.height / 2.5,
               // color: palette.violet,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
@@ -49,8 +50,8 @@ class HomePage extends StatelessWidget {
               ),
             ),
             Positioned(
-              // bottom: -40,
-              top: 270,
+              bottom: -2.0,
+              // top: 270,
               // left: 250,
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.85,

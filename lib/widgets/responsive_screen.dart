@@ -15,12 +15,16 @@ class ResponsiveScreen extends StatelessWidget {
   /// How much bigger should the [squarishMainArea] be compared to the other
   /// elements.
   final double mainAreaProminence;
+  final double paddingFactor;
 
   const ResponsiveScreen({
     required this.squarishMainArea,
     required this.rectangularMenuArea,
-    this.topMessageArea = const SizedBox.shrink(),
+    this.topMessageArea = const SizedBox(
+      height: 0,
+    ),
     this.mainAreaProminence = 0.8,
+    this.paddingFactor = 0.0,
     super.key,
   });
 
@@ -30,20 +34,13 @@ class ResponsiveScreen extends StatelessWidget {
       builder: (context, constraints) {
         // This widget wants to fill the whole screen.
         final size = constraints.biggest;
-        final padding = EdgeInsets.all(size.shortestSide / 30);
+        final padding = EdgeInsets.all(size.shortestSide * paddingFactor / 30);
 
         if (size.height >= size.width) {
           // "Portrait" / "mobile" mode.
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SafeArea(
-                bottom: false,
-                child: Padding(
-                  padding: padding,
-                  child: topMessageArea,
-                ),
-              ),
               Expanded(
                 flex: (mainAreaProminence * 100).round(),
                 child: SafeArea(

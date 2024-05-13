@@ -92,8 +92,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(top: screenHeight / 5, child: SearchInput()),
-            Positioned(top: screenHeight / 5, child: HeroText()),
+            const Positioned(top: 108, child: const SearchInput()),
+            const Positioned(top: 5, child: HeroText()),
           ],
         ),
 
@@ -119,9 +119,12 @@ class HomePage extends StatelessWidget {
                     children: [
                       Category(
                           name: "Appointments",
-                          path: "assets/icons/appointments.svg"),
+                          path: "assets/icons/appointments.svg",
+                          goTo: "/home/appointements"),
                       Category(
-                          name: "Lab Test", path: "assets/icons/lab-test.svg"),
+                          name: "Lab Test",
+                          path: "assets/icons/lab-test.svg",
+                          goTo: "/home/lab-test"),
                     ],
                   ),
                   SizedBox(
@@ -131,10 +134,13 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Category(
-                          name: "Payment", path: "assets/icons/payment.svg"),
+                          name: "Payment",
+                          path: "assets/icons/payment.svg",
+                          goTo: "/home/payment"),
                       Category(
                           name: "Prescriptions \n & Medication",
-                          path: "assets/icons/prescription.svg"),
+                          path: "assets/icons/prescription.svg",
+                          goTo: "/home/prescription"),
                     ],
                   ),
                   SizedBox(
@@ -144,10 +150,13 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Category(
-                          name: "History", path: "assets/icons/history.svg"),
+                          name: "History",
+                          path: "assets/icons/history.svg",
+                          goTo: "/home/history"),
                       Category(
                           name: "Downloads",
-                          path: "assets/icons/downloads.svg"),
+                          path: "assets/icons/downloads.svg",
+                          goTo: "/home/downloads"),
                     ],
                   ),
                 ],

@@ -4,6 +4,7 @@ import 'package:hospital_managment_app/screens/home/appointements.dart';
 import 'package:hospital_managment_app/screens/home_page.dart';
 import 'package:hospital_managment_app/screens/auth/sign_in.dart';
 import 'package:hospital_managment_app/screens/auth/sign_up.dart';
+import 'package:hospital_managment_app/screens/profile/profile.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/wrapper/app_lifecycle.dart';
 
@@ -37,8 +38,9 @@ void main() {
 
   _log.info('Going full screen');
   SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.edgeToEdge,
-  );
+      SystemUiMode.manual,
+      overlays: [SystemUiOverlay.bottom],
+    );
   runApp(const MyApp());
 }
 
@@ -72,29 +74,34 @@ class MyApp extends StatelessWidget {
             const HomePage(),
         routes: [
           GoRoute(
-            path: 'appointements',
+            path: 'profile',
             builder: (BuildContext context, GoRouterState state) =>
-                const AppointementsPage(),
+                const ProfileScreen(),
           ),
           GoRoute(
-            path: 'lab_test',
-            builder: (context, state) => const AppointementsPage(),
+            path: 'appointments',
+            builder: (BuildContext context, GoRouterState state) =>
+                const AppointmentsPage(),
+          ),
+          GoRoute(
+            path: 'lab-test',
+            builder: (context, state) => const AppointmentsPage(),
           ),
           GoRoute(
             path: 'payment',
-            builder: (context, state) => const AppointementsPage(),
+            builder: (context, state) => const AppointmentsPage(),
           ),
           GoRoute(
             path: 'prescriptions',
-            builder: (context, state) => const AppointementsPage(),
+            builder: (context, state) => const AppointmentsPage(),
           ),
           GoRoute(
             path: 'history',
-            builder: (context, state) => const AppointementsPage(),
+            builder: (context, state) => const AppointmentsPage(),
           ),
           GoRoute(
             path: 'downloads',
-            builder: (context, state) => const AppointementsPage(),
+            builder: (context, state) => const AppointmentsPage(),
           ),
         ]),
   ]);

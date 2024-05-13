@@ -29,9 +29,10 @@ class Category extends StatelessWidget {
             padding: const EdgeInsets.all(padding),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.25,
+                  width: MediaQuery.of(context).size.width * 0.35,
                   // height: 121,
                   decoration: const BoxDecoration(
                     shape: BoxShape.rectangle,

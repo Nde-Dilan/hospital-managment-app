@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/widgets/category.dart';
+import 'package:hospital_managment_app/widgets/search_input.dart';
+import 'package:hospital_managment_app/widgets/hero_text.dart';
 import 'package:hospital_managment_app/widgets/responsive_screen.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +24,7 @@ class HomePage extends StatelessWidget {
     _log.info("screenHeight is:  $screenHeight");
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: palette.trueWhite,
       body: ResponsiveScreen(
         // mainAreaProminence: 0.24,
@@ -36,7 +35,6 @@ class HomePage extends StatelessWidget {
           clipBehavior: Clip.none,
           alignment: AlignmentDirectional.topCenter,
           children: [
-            
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 2.5,
@@ -94,6 +92,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+            Positioned(top: screenHeight / 5, child: SearchInput()),
+            Positioned(top: screenHeight / 5, child: HeroText()),
           ],
         ),
 

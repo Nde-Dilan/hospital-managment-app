@@ -44,7 +44,7 @@ class HeroText extends StatelessWidget {
                   shape: BoxShape.rectangle,
                 ),
                 child: const Padding(
-                    padding: EdgeInsets.all(0.0),
+                    padding: EdgeInsets.all(18.0),
                     child: Image(
                         image: AssetImage('assets/icons/notification.png'))),
               ),
@@ -60,7 +60,8 @@ class HeroText extends StatelessWidget {
                 ),
                 child: const Padding(
                   padding: EdgeInsets.all(0.0),
-                  child: Image(image: AssetImage('assets/icons/account.png')),
+                  child: Image(
+                      width: 55, image: AssetImage('assets/icons/account.png')),
                 ),
               ),
             ),

@@ -1,88 +1,54 @@
 import 'package:flutter/material.dart';
 
+const double fontSize = 18;
 final optionList = [
   {
     "name": "Appointments History",
     "onTap": "/home",
-    "style": const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color:  Color(0xff000000)),
-    "icon": Icons.person_outline,  
+    "style":  const TextStyle(
+        fontSize: fontSize, fontWeight: FontWeight.w600, color: Color(0xff000000)),
+    "icon": Icons.history,
   },
   {
     "name": "Edit Personal Details",
     "onTap": "/home",
-    "style": const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color:  Color(0xff000000)),
-    "icon": Icons.person_outline,  
+    "style":  const TextStyle(
+        fontSize: fontSize, fontWeight: FontWeight.w600, color: Color(0xff000000)),
+    "icon": Icons.person_outline,
   },
   {
     "name": "Payment Method",
     "onTap": "/home",
-    "style": const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color:  Color(0xff000000)),
-    "icon": Icons.person_outline,  
+    "style":  const TextStyle(
+        fontSize: fontSize, fontWeight: FontWeight.w600, color: Color(0xff000000)),
+    "icon": Icons.payment,
   },
   {
     "name": "Appearance",
     "onTap": "/home",
-    "style": const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color:  Color(0xff000000)),
-    "icon": Icons.app_settings_alt_sharp,  
+    "style":  const TextStyle(
+        fontSize: fontSize, fontWeight: FontWeight.w600, color: Color(0xff000000)),
+    "icon": Icons.settings,
   },
   {
     "name": "Notifications",
     "onTap": "/home",
-    "style": const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color:  Color(0xff000000)),
-    "icon": Icons.notifications_outlined,  
+    "style":  const TextStyle(
+        fontSize: fontSize, fontWeight: FontWeight.w600, color: Color(0xff000000)),
+    "icon": Icons.notifications_outlined,
   },
   {
     "name": "Help",
-    "onTap": "/home",
-    "style": const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color:  Color(0xff000000)),
-    "icon": Icons.person_outline,  
+    "onTap": "/hhh",
+    "style":  const TextStyle(
+        fontSize: fontSize, fontWeight: FontWeight.w600, color: Color(0xff000000)),
+    "icon": Icons.help_center,
   },
   {
     "name": "Logout",
     "onTap": "/home",
-    "style": const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color:  Color(0xff000000)),
-    "icon": Icons.logout,  
+    "style":  const TextStyle(
+        fontSize: fontSize, fontWeight: FontWeight.w600, color: Color(0xff000000)),
+    "icon": Icons.logout,
   },
-  
 ];
-
-/**
- * {
- *  name:"",
- *  onTap:"",
- *  style:Widget,
- *  icon:Widget,
- * }
- * 
- * CustomInkWell(
-                    name: "Edit Personal Details",
-                    onTap: "/home",
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: palette.textDark),
-                    icon: Icons.person_outline,
-                  );
- * 
- */

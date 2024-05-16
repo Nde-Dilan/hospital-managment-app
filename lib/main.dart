@@ -38,9 +38,9 @@ void main() {
 
   _log.info('Going full screen');
   SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: [SystemUiOverlay.bottom],
-    );
+    SystemUiMode.manual,
+    overlays: [],
+  );
   runApp(const MyApp());
 }
 

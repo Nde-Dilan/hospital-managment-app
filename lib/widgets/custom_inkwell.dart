@@ -26,7 +26,8 @@ class CustomInkWell extends StatelessWidget {
         GoRouter.of(context).go(onTap);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
             color: const Color(0xffDFDDDD).withOpacity(0.2),
             borderRadius: BorderRadius.circular(20)),

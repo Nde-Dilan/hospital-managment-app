@@ -20,25 +20,18 @@ class HomePage extends StatelessWidget {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
 
-    _log.info("screenWidth is:  $screenWidth");
-    _log.info("screenHeight is:  $screenHeight");
-
+    _log.info("Painting the top and bottom layout");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: palette.trueWhite,
       body: ResponsiveScreen(
-        // mainAreaProminence: 0.24,
-
         squarishMainArea: Stack(
-          //  overflow: Overflow.visible,
-          // fit: StackFit.expand,
           clipBehavior: Clip.none,
           alignment: AlignmentDirectional.topCenter,
           children: [
             Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2.5,
-              // color: palette.violet,
+              width: screenWidth,
+              height: screenHeight / 2.5,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: palette.violet,
@@ -49,10 +42,8 @@ class HomePage extends StatelessWidget {
             ),
             Positioned(
               bottom: -2.0,
-              // top: 270,
-              // left: 250,
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.85,
+                width: screenWidth * 0.85,
                 height: 121,
                 decoration: BoxDecoration(
                   color: palette.darkViolet,
@@ -60,7 +51,6 @@ class HomePage extends StatelessWidget {
                       const BorderRadius.all(Radius.circular(smallRadius)),
                   border: Border.all(
                     color: palette.darkViolet,
-                    // width: 1.0,
                   ),
                 ),
                 child: const Padding(
@@ -92,24 +82,18 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            const Positioned(top: 108, child: const SearchInput()),
+            const Positioned(top: 108, child: SearchInput()),
             const Positioned(top: 5, child: HeroText()),
           ],
         ),
-
         rectangularMenuArea: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             final size = constraints.biggest;
             final padding = EdgeInsets.all(size.shortestSide / 30);
-
-            _log.info("screenWidth with LayoutBuilder is:  ${size.width}");
-            _log.info("screenHeight with LayoutBuilder is:  ${size.height}");
-
             return Container(
               padding: padding,
               color: palette.trueWhite,
               child: const Column(
-                // crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   SizedBox(
                     height: 20,
@@ -164,6 +148,13 @@ class HomePage extends StatelessWidget {
             );
           },
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+           BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home"),
+           BottomNavigationBarItem(icon: Icon(Icons.recent_actors_outlined),label: "recent"),
+           BottomNavigationBarItem(icon: Icon(Icons.account_balance),label: "Account"),
+          ],
       ),
     );
   }

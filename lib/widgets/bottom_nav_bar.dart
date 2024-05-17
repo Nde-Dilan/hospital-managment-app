@@ -1,34 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:hospital_managment_app/styles/palette.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hospital_managment_app/widgets/custom_bottom_button.dart';
-import 'package:provider/provider.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
-  const CustomBottomNavBar({super.key});
+  final int page;
+  const CustomBottomNavBar({super.key, required this.page});
 
   @override
   State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
 }
 
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
-  int currentTab = 0;
   @override
   Widget build(BuildContext context) {
-    final palette = context.watch<Palette>();
+      int currentTab = widget.page;
 
-    return Container(
+    return SizedBox(
       height: 90,
-      /*decoration: const BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey,
-                blurRadius: 1,
-                offset: Offset(1, 1),
-                spreadRadius: 1)
-          ],
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-        ),*/
       child: SizedBox(
         height: 60,
         child: Row(
@@ -40,7 +28,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 onPressed: () {
                   setState(() {
                     currentTab = 0;
-                    
+                    GoRouter.of(context).go("/home");
                   });
                 },
                 isActive: currentTab == 0 ? true : false,
@@ -52,6 +40,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               onPressed: () {
                 setState(() {
                   currentTab = 1;
+                  GoRouter.of(context).go("/home");
                 });
               },
               isActive: currentTab == 1 ? true : false,
@@ -61,6 +50,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               onPressed: () {
                 setState(() {
                   currentTab = 2;
+                  GoRouter.of(context).go("/home");
                 });
               },
               isActive: currentTab == 2 ? true : false,
@@ -71,6 +61,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               onPressed: () {
                 setState(() {
                   currentTab = 3;
+                  GoRouter.of(context).go('/home/profile');
                 });
               },
               isActive: currentTab == 3 ? true : false,

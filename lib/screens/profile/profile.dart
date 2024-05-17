@@ -89,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
               );
             }),
       ])),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      bottomNavigationBar: const CustomBottomNavBar(page: 3,),
     );
   }
 }

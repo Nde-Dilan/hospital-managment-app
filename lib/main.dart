@@ -4,6 +4,8 @@ import 'package:hospital_managment_app/screens/home/appointements.dart';
 import 'package:hospital_managment_app/screens/home_page.dart';
 import 'package:hospital_managment_app/screens/auth/sign_in.dart';
 import 'package:hospital_managment_app/screens/auth/sign_up.dart';
+import 'package:hospital_managment_app/screens/profile/edit_image.dart';
+import 'package:hospital_managment_app/screens/profile/personal_details.dart';
 import 'package:hospital_managment_app/screens/profile/profile.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/wrapper/app_lifecycle.dart';
@@ -39,7 +41,7 @@ void main() {
   _log.info('Going full screen');
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.manual,
-    overlays: [],
+    overlays: [SystemUiOverlay.top],
   );
   runApp(const MyApp());
 }
@@ -74,10 +76,21 @@ class MyApp extends StatelessWidget {
             const HomePage(),
         routes: [
           GoRoute(
-            path: 'profile',
-            builder: (BuildContext context, GoRouterState state) =>
-                const ProfileScreen(),
-          ),
+              path: 'profile',
+              builder: (BuildContext context, GoRouterState state) =>
+                  const ProfileScreen(),
+              routes: [
+                GoRoute(
+                  path: 'personal-details',
+                  builder: (BuildContext context, GoRouterState state) =>
+                      const PersonalDetails(),
+                ),
+                GoRoute(
+                  path: 'edit-image',
+                  builder: (BuildContext context, GoRouterState state) =>
+                      const EditImagePage(),
+                ),
+              ]),
           GoRoute(
             path: 'appointments',
             builder: (BuildContext context, GoRouterState state) =>

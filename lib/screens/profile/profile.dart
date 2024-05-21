@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: palette.trueWhite,
-        leading: GestureDetector(
+        leading: InkWell(
           onTap: () {
             GoRouter.of(context).pop();
           },
@@ -51,6 +51,9 @@ class ProfileScreen extends StatelessWidget {
                 bottom: 20,
                 right: 0,
                 child: InkWell(
+                  onTap: () {
+                    GoRouter.of(context).go("onTap");
+                  },
                   child: Container(
                       height: 30,
                       width: 30,
@@ -83,13 +86,15 @@ class ProfileScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return CustomInkWell(
                 name: optionList[index]["name"].toString(),
-                onTap: optionList[index]["onTop"].toString(),
+                onTap: optionList[index]["onTap"].toString(),
                 style: optionList[index]["style"] as TextStyle,
                 icon: optionList[index]["icon"] as IconData,
               );
             }),
       ])),
-      bottomNavigationBar: const CustomBottomNavBar(page: 3,),
+      bottomNavigationBar: const CustomBottomNavBar(
+        page: 3,
+      ),
     );
   }
 }

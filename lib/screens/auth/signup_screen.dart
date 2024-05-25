@@ -16,8 +16,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool agreePersonalData = true;
   @override
   Widget build(BuildContext context) {
-    return CustomScaffold(
-      child: Column(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Column(
         children: [
           const Expanded(
             flex: 1,
@@ -118,9 +119,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 25.0,
                       ),
 
-                        // Mobile Number
+                      // Mobile Number
 
-                        TextFormField(
+                      TextFormField(
                         obscureText: true,
                         obscuringCharacter: '*',
                         validator: (value) {
@@ -150,10 +151,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
 
-                       const SizedBox(
+                      const SizedBox(
                         height: 25.0,
                       ),
-                      
+
                       // password
                       TextFormField(
                         obscureText: true,

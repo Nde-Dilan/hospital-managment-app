@@ -21,7 +21,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       _log.info("Going to login screen in 4 seconds");
       // Navigate to login screen after the delay
 
-      GoRouter.of(context).go("/home");
+      GoRouter.of(context).go("/auth");
 
       _log.info("What's happening after 4 seconds");
     });

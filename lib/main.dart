@@ -24,8 +24,9 @@ import 'package:go_router/go_router.dart';
 //To manage state within the app
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   if (kDebugMode) {
     // Log more when in debug mode.
     Logger.root.level = Level.FINE;
@@ -56,21 +57,17 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const WelcomeScreen(),
+          const SignUpScreen(),
     ),
     GoRoute(
         path: '/auth',
         builder: (BuildContext context, GoRouterState state) =>
-            const SignInScreen(),
+            const SignUpScreen(),
         routes: [
           GoRoute(
             path: 'sign-in',
             builder: (BuildContext context, GoRouterState state) =>
                 const SignInScreen(),
-          ),
-          GoRoute(
-            path: 'sign-up',
-            builder: (context, state) => const SignUpScreen(),
           ),
           GoRoute(
             path: 'forgot-password',

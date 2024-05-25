@@ -4,7 +4,6 @@ import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/category.dart';
 import 'package:hospital_managment_app/widgets/search_input.dart';
 import 'package:hospital_managment_app/widgets/hero_text.dart';
-import 'package:hospital_managment_app/widgets/responsive_screen.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
@@ -19,24 +18,21 @@ class HomePage extends StatelessWidget {
     const double radius = 30.0;
     const double smallRadius = 18.0;
     final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
 
     _log.info("Painting the top and bottom layout");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: palette.trueWhite,
       body: SingleChildScrollView(
-        child: SizedBox(
-          width: screenWidth,
-          height: screenHeight,
-          child: ResponsiveScreen(
-            squarishMainArea: Stack(
+        child: Column(
+          children: [
+            Stack(
               clipBehavior: Clip.none,
               alignment: AlignmentDirectional.topCenter,
               children: [
                 Container(
                   width: screenWidth,
-                  height: 310,
+                  height: 290,
                   decoration: BoxDecoration(
                     shape: BoxShape.rectangle,
                     color: palette.violet,
@@ -46,7 +42,8 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: 40.50,
+                  // bottom: -20.50,
+                  top: 200.50,
                   child: Container(
                     width: screenWidth * 0.85,
                     height: 121,
@@ -92,66 +89,63 @@ class HomePage extends StatelessWidget {
                 const Positioned(top: 5, child: HeroText()),
               ],
             ),
-            rectangularMenuArea: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                final size = constraints.biggest;
-                final padding = EdgeInsets.all(size.shortestSide / 30);
-                return Container(
-                  padding: padding,
-                  color: palette.trueWhite,
-                  child: const Column(
+            const SizedBox(
+              height: 28,
+            ),
+            Container(
+              padding: const EdgeInsets.all(30),
+              color: palette.trueWhite,
+              child: const Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Category(
-                              name: "Appointments",
-                              path: "assets/icons/appointments.svg",
-                              goTo: "/home/appointements"),
-                          Category(
-                              name: "Lab Test",
-                              path: "assets/icons/lab-test.svg",
-                              goTo: "/home/lab-test"),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Category(
-                              name: "Payment",
-                              path: "assets/icons/payment.svg",
-                              goTo: "/home/payment"),
-                          Category(
-                              name: "Prescriptions \n & Medication",
-                              path: "assets/icons/prescription.svg",
-                              goTo: "/home/prescription"),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Category(
-                              name: "History",
-                              path: "assets/icons/history.svg",
-                              goTo: "/home/history"),
-                          Category(
-                              name: "Downloads",
-                              path: "assets/icons/downloads.svg",
-                              goTo: "/home/downloads"),
-                        ],
-                      ),
+                      Category(
+                          name: "Appointments",
+                          path: "assets/icons/appointments.svg",
+                          goTo: "/home/appointements"),
+                      Category(
+                          name: "Lab Test",
+                          path: "assets/icons/lab-test.svg",
+                          goTo: "/home/lab-test"),
                     ],
                   ),
-                );
-              },
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Category(
+                          name: "Payment",
+                          path: "assets/icons/payment.svg",
+                          goTo: "/home/payment"),
+                      Category(
+                          name: "Prescriptions \n & Medication",
+                          path: "assets/icons/prescription.svg",
+                          goTo: "/home/prescription"),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Category(
+                          name: "History",
+                          path: "assets/icons/history.svg",
+                          goTo: "/home/history"),
+                      Category(
+                          name: "Downloads",
+                          path: "assets/icons/downloads.svg",
+                          goTo: "/home/downloads"),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
       bottomNavigationBar: const CustomBottomNavBar(

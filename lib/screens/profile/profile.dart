@@ -52,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                 right: 0,
                 child: InkWell(
                   onTap: () {
-                    GoRouter.of(context).go("onTap");
+                    GoRouter.of(context).go("/home/profile/edit-image");
                   },
                   child: Container(
                       height: 30,

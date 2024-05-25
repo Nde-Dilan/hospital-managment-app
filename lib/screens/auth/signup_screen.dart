@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';ment
-import 'package:hospital_management_app/screens/signup_screen.dart';
-import 'package:hospital_management_app/widgets/custom_scaffold.dart';
+import 'package:icons_plus/icons_plus.dart';
+import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
+import 'package:hospital_managment_app/theme/theme.dart';
+import 'package:hospital_managment_app/widgets/custom_scaffold.dart';
 
-import '../theme/theme.dart';
-
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
-  final _formSignInKey = GlobalKey<FormState>();
-  bool rememberPassword = true;
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _formSignupKey = GlobalKey<FormState>();
+  bool agreePersonalData = true;
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -38,13 +37,15 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               child: SingleChildScrollView(
+                // get started form
                 child: Form(
-                  key: _formSignInKey,
+                  key: _formSignupKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      // get started text
                       Text(
-                        'Welcome back',
+                        'Get Started',
                         style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w900,
@@ -54,6 +55,38 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(
                         height: 40.0,
                       ),
+                      // full name
+                      TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter Full name';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          label: const Text('Full Name'),
+                          hintText: 'Enter Full Name',
+                          hintStyle: const TextStyle(
+                            color: Colors.black26,
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.black12, // Default border color
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.black12, // Default border color
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 25.0,
+                      ),
+                      // email
                       TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
@@ -84,6 +117,44 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(
                         height: 25.0,
                       ),
+
+                        // Mobile Number
+
+                        TextFormField(
+                        obscureText: true,
+                        obscuringCharacter: '*',
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please Enter your Phone Number';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          label: const Text('Mobile Number'),
+                          hintText: 'Enter Mobile Number',
+                          hintStyle: const TextStyle(
+                            color: Colors.black26,
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.black12, // Default border color
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.black12, // Default border color
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+
+                       const SizedBox(
+                        height: 25.0,
+                      ),
+                      
+                      // password
                       TextFormField(
                         obscureText: true,
                         obscuringCharacter: '*',
@@ -116,35 +187,29 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(
                         height: 25.0,
                       ),
+                      // i agree to the processing
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              Checkbox(
-                                value: rememberPassword,
-                                onChanged: (bool? value) {
-                                  setState(() {
-                                    rememberPassword = value!;
-                                  });
-                                },
-                                activeColor: lightColorScheme.primary,
-                              ),
-                              const Text(
-                                'Remember me',
-                                style: TextStyle(
-                                  color: Colors.black45,
-                                ),
-                              ),
-                            ],
+                          Checkbox(
+                            value: agreePersonalData,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                agreePersonalData = value!;
+                              });
+                            },
+                            activeColor: lightColorScheme.primary,
                           ),
-                          GestureDetector(
-                            child: Text(
-                              'Forget password?',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: lightColorScheme.primary,
-                              ),
+                          const Text(
+                            'I agree to the processing of ',
+                            style: TextStyle(
+                              color: Colors.black45,
+                            ),
+                          ),
+                          Text(
+                            'Personal data',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: lightColorScheme.primary,
                             ),
                           ),
                         ],
@@ -152,18 +217,19 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(
                         height: 25.0,
                       ),
+                      // signup button
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            if (_formSignInKey.currentState!.validate() &&
-                                rememberPassword) {
+                            if (_formSignupKey.currentState!.validate() &&
+                                agreePersonalData) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                   content: Text('Processing Data'),
                                 ),
                               );
-                            } else if (!rememberPassword) {
+                            } else if (!agreePersonalData) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text(
@@ -175,8 +241,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 25.0,
+                        height: 30.0,
                       ),
+                      // sign up divider
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -207,8 +274,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         ],
                       ),
                       const SizedBox(
-                        height: 25.0,
+                        height: 30.0,
                       ),
+                      // sign up social media logo
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -221,12 +289,12 @@ class _SignInScreenState extends State<SignInScreen> {
                       const SizedBox(
                         height: 25.0,
                       ),
-                      // don't have an account
+                      // already have an account
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'Don\'t have an account? ',
+                            'Already have an account? ',
                             style: TextStyle(
                               color: Colors.black45,
                             ),
@@ -236,12 +304,12 @@ class _SignInScreenState extends State<SignInScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (e) => const SignUpScreen(),
+                                  builder: (e) => const SignInScreen(),
                                 ),
                               );
                             },
                             child: Text(
-                              'Sign up',
+                              'Sign in',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: lightColorScheme.primary,

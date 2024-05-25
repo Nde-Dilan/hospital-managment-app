@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:logging/logging.dart';
@@ -60,7 +59,7 @@ class _SearchInputState extends State<SearchInput> {
             ),
             child:
                 const Image(image: AssetImage('assets/icons/preferences.png'))),
-        SizedBox(
+        const SizedBox(
           width: 15,
         )
       ],

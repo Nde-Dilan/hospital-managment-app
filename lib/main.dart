@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
+import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
 import 'package:hospital_managment_app/screens/home/appointements.dart';
+import 'package:hospital_managment_app/screens/home/payment_method.dart';
 import 'package:hospital_managment_app/screens/home_page.dart';
-import 'package:hospital_managment_app/screens/auth/sign_in.dart';
-import 'package:hospital_managment_app/screens/auth/sign_up.dart';
 import 'package:hospital_managment_app/screens/profile/edit_image.dart';
 import 'package:hospital_managment_app/screens/profile/personal_details.dart';
 import 'package:hospital_managment_app/screens/profile/profile.dart';
+import 'package:hospital_managment_app/screens/welcome_screen.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/wrapper/app_lifecycle.dart';
 
@@ -52,22 +54,27 @@ class MyApp extends StatelessWidget {
   //This contains all the routes of our app (atleast what we are using now)
   static final _router = GoRouter(routes: <RouteBase>[
     GoRoute(
-        path: '/',
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) =>
+          const WelcomeScreen(),
+    ),
+    GoRoute(
+        path: '/auth',
         builder: (BuildContext context, GoRouterState state) =>
-            const HomePage(),
+            const SignInScreen(),
         routes: [
           GoRoute(
-            path: 'sing-in',
+            path: 'sign-in',
             builder: (BuildContext context, GoRouterState state) =>
-                const SignInPage(),
+                const SignInScreen(),
           ),
           GoRoute(
-            path: 'sing-up',
-            builder: (context, state) => const SignUpPage(),
+            path: 'sign-up',
+            builder: (context, state) => const SignUpScreen(),
           ),
           GoRoute(
             path: 'forgot-password',
-            builder: (context, state) => const SignUpPage(),
+            builder: (context, state) => const SignUpScreen(),
           ),
         ]),
     GoRoute(
@@ -102,7 +109,7 @@ class MyApp extends StatelessWidget {
           ),
           GoRoute(
             path: 'payment',
-            builder: (context, state) => const AppointmentsPage(),
+            builder: (context, state) => const PaymentMethodPage(),
           ),
           GoRoute(
             path: 'prescriptions',

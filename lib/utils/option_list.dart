@@ -22,7 +22,7 @@ final optionList = [
   },
   {
     "name": "Payment Method",
-    "onTap": "/home",
+    "onTap": "/home/payment",
     "style": const TextStyle(
         fontSize: fontSize,
         fontWeight: FontWeight.w600,
@@ -64,5 +64,26 @@ final optionList = [
         fontWeight: FontWeight.w600,
         color: Color(0xff000000)),
     "icon": Icons.logout,
+  },
+];
+
+final editImageOptionList = [
+  {
+    "name": "Select from Gallery",
+    "onTap": "/home",
+    "style": const TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.w600,
+        color: Color(0xff000000)),
+    "icon": Icons.grid_on_rounded,
+  },
+  {
+    "name": "Take a Picture",
+    "onTap": "/home",
+    "style": const TextStyle(
+        fontSize: fontSize,
+        fontWeight: FontWeight.w600,
+        color: Color(0xff000000)),
+    "icon": Icons.camera_enhance,
   },
 ];

@@ -3,28 +3,46 @@ import 'package:go_router/go_router.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:provider/provider.dart';
 
-
 class CustomStack extends StatelessWidget {
+  /// Spacing from the top to the stack
   final double topSpacing;
   final double radius;
+  final String title;
   final String? name;
-  final double verticalSpacing;
+  final double horizontalSpacing;
   final double fontSize;
-  const CustomStack({super.key, required this.topSpacing, required this.radius, required this.verticalSpacing,  this.name, required this.fontSize});
+  final double spacing;
+  final Widget? notifBtn;
+  final Widget? accountBtn;
+  final Widget positionedWidget;
+  final MainAxisAlignment mainAxisAlignment;
+  const CustomStack(
+      {super.key,
+      required this.topSpacing,
+      required this.radius,
+      required this.horizontalSpacing,
+      this.name,
+      required this.fontSize,
+      required this.title,
+      this.notifBtn,
+      this.accountBtn,
+      required this.mainAxisAlignment,
+      required this.positionedWidget,
+      required this.spacing});
 
   @override
   Widget build(BuildContext context) {
-        final palette = context.watch<Palette>();
+    final palette = context.watch<Palette>();
 
     return Stack(
       children: [
         Container(
-          margin:  EdgeInsets.only(top: topSpacing),
+          margin: EdgeInsets.only(top: topSpacing),
           height: MediaQuery.of(context).size.height * 0.25,
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: palette.violet,
-            borderRadius:  BorderRadius.only(
+            borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(radius),
                 bottomRight: Radius.circular(radius)),
           ),
@@ -34,7 +52,11 @@ class CustomStack extends StatelessWidget {
             child: Container(
           margin: const EdgeInsets.only(top: 34.0),
           child: Row(
+            mainAxisAlignment: mainAxisAlignment,
             children: [
+              SizedBox(
+                width: spacing,
+              ),
               InkWell(
                 onTap: () {
                   GoRouter.of(context).pop();
@@ -53,74 +75,23 @@ class CustomStack extends StatelessWidget {
                   ),
                 ),
               ),
-               SizedBox(
-                width: verticalSpacing,
+              SizedBox(
+                width: horizontalSpacing,
               ),
-              const Text(
-                "Edit Personal details",
+              Text(
+                title,
                 style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    GoRouter.of(context).go('/notifications');
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.35,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: const Padding(
-                        padding: EdgeInsets.all(0.0),
-                        child: Image(
-                            image:
-                                AssetImage('assets/icons/notification.png'))),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () {
-                    GoRouter.of(context).go('/home/profile');
-                  },
-                  child: Container(
-                    // width: MediaQuery.of(context).size.width * 0.235,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Image(
-                          width: 55,
-                          image: AssetImage('assets/icons/account.png')),
-                    ),
-                  ),
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
           ),
         )),
-        
         Positioned(
-            top: 105,
-            child: Container(
-              margin: const EdgeInsets.all(18),
-              child: Column(
-                children: [
-                  const Text("Edit your details,"),
-                  Text(
-                    "name",
-                    style: TextStyle(
-                      fontSize: fontSize,
-                      color: palette.textDark,
-                    ),
-                  )
-                ],
-              ),
-            ))
+          top: 105,
+          child: positionedWidget,
+        )
       ],
     );
   }

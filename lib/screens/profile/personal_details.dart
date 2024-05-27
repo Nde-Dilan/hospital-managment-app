@@ -241,6 +241,8 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                     const Center(
                       child: CustomButton(
                         text: "Save Changes",
+                        width: 145,
+                        radius: 14,
                       ),
                     ),
                   ],

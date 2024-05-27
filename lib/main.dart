@@ -4,6 +4,7 @@ import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
 import 'package:hospital_managment_app/screens/home/appointements.dart';
 import 'package:hospital_managment_app/screens/home/payment_method.dart';
+import 'package:hospital_managment_app/screens/home/payment_with_page.dart';
 import 'package:hospital_managment_app/screens/home_page.dart';
 import 'package:hospital_managment_app/screens/profile/edit_image.dart';
 import 'package:hospital_managment_app/screens/profile/personal_details.dart';
@@ -11,6 +12,7 @@ import 'package:hospital_managment_app/screens/profile/profile.dart';
 import 'package:hospital_managment_app/screens/welcome_screen.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/wrapper/app_lifecycle.dart';
+
 
 //Since using print() will reduce the app's performance we can use this
 import 'package:logging/logging.dart';
@@ -24,7 +26,7 @@ import 'package:go_router/go_router.dart';
 //To manage state within the app
 import 'package:provider/provider.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   if (kDebugMode) {
@@ -57,12 +59,12 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const SignUpScreen(),
+          const WelcomeScreen(),
     ),
     GoRoute(
         path: '/auth',
         builder: (BuildContext context, GoRouterState state) =>
-            const SignUpScreen(),
+            const SignInScreen(),
         routes: [
           GoRoute(
             path: 'sign-in',
@@ -105,9 +107,28 @@ class MyApp extends StatelessWidget {
             builder: (context, state) => const AppointmentsPage(),
           ),
           GoRoute(
-            path: 'payment',
-            builder: (context, state) => const PaymentMethodPage(),
-          ),
+              path: 'payment',
+              builder: (context, state) => const PaymentMethodPage(),
+              routes: [
+                GoRoute(
+                  path: 'mtn',
+                  builder: (BuildContext context, GoRouterState state) =>
+                      const PaymentWith(
+                    operator: 'MTN',
+                    isMTNFirst: true,
+                    image: "assets/images/mtn-mobile-money.png",
+                  ),
+                ),
+                GoRoute(
+                  path: 'orange',
+                  builder: (BuildContext context, GoRouterState state) =>
+                      const PaymentWith(
+                    operator: 'Orange',
+                    isMTNFirst: false,
+                    image: "assets/images/orange-money.png",
+                  ),
+                ),
+              ]),
           GoRoute(
             path: 'prescriptions',
             builder: (context, state) => const AppointmentsPage(),

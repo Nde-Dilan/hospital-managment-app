@@ -18,4 +18,6 @@ class Palette {
   Color get textDark => const Color(0xff000000);
   Color get congrasColor => const Color(0xff0B72AC);
   Color get trueWhite => const Color(0xffffffff);
+  Color get mtn => const Color(0xffFECA05);
+  Color get orange => const Color(0xffFF7900);
 }

@@ -37,7 +37,7 @@ class EditImagePage extends StatelessWidget {
       ),
       body: ResponsiveScreen(
           squarishMainArea: Image.asset(
-            "assets/icons/account-big.png",
+            "assets/images/profile-picture.png",
             height: 120,
             width: 120,
             fit: BoxFit.cover,

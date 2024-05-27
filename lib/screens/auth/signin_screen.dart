@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
 
@@ -155,7 +156,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            if (_formSignInKey.currentState!.validate() &&
+                                              GoRouter.of(context).go('/home');
+
+                            /*if (_formSignInKey.currentState!.validate() &&
                                 rememberPassword) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
@@ -168,7 +171,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     content: Text(
                                         'Please agree to the processing of personal data')),
                               );
-                            }
+                            }*/
                           },
                           child: const Text('Sign up'),
                         ),

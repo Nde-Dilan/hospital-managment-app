@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class PaymentButton extends StatelessWidget {
   final String image;
   final Color color;
+  final Color highlightColor;
   final Color backColor;
   final String moneyType;
   final Function()? onTap;
@@ -11,11 +12,14 @@ class PaymentButton extends StatelessWidget {
       required this.image,
       required this.moneyType,
       required this.color,
-      required this.backColor, this.onTap});
+      required this.backColor,
+      this.onTap,
+      required this.highlightColor});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      highlightColor: highlightColor,
       onTap: onTap,
       child: Container(
         width: MediaQuery.of(context).size.width * 0.775,

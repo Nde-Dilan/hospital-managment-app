@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 
@@ -168,7 +169,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                         ),
                         onPressed: () {
                           setState(() {
@@ -196,7 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         'I agree to the processing of ',
                         style: TextStyle(color: Colors.black45),
                       ),
-                   const   Text(
+                      const Text(
                         'personal data',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -212,10 +215,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF7B61FF), // Button background color
+                        backgroundColor:
+                            const Color(0xFF7B61FF), // Button background color
                       ),
                       onPressed: () {
-                        if (_formSignupKey.currentState!.validate() && agreePersonalData) {
+                        /*if (_formSignupKey.currentState!.validate() && agreePersonalData) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Processing Data')),
                           );
@@ -224,7 +228,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             const SnackBar(
                                 content: Text('Please agree to the processing of personal data')),
                           );
-                        }
+                        }*/
+                        GoRouter.of(context).go("/home");
                       },
                       child: const Text('Sign up'),
                     ),
@@ -280,7 +285,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (e) => const SignInScreen()),
+                            MaterialPageRoute(
+                                builder: (e) => const SignInScreen()),
                           );
                         },
                         child: const Text(

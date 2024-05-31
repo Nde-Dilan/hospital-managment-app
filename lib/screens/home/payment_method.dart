@@ -13,8 +13,10 @@ class PaymentMethodPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: palette.trueWhite,
       body: Column(
         children: [
           CustomStack(
@@ -40,9 +42,11 @@ class PaymentMethodPage extends StatelessWidget {
                 ],
               ),
             ),
+            bottomSpacing: 0,
+            top: size.width * 0.29,
           ),
-          const SizedBox(
-            height: 14,
+          SizedBox(
+            height: size.width * 0.12,
           ),
           Text(
             "Select your payment method",
@@ -56,6 +60,7 @@ class PaymentMethodPage extends StatelessWidget {
             height: 34,
           ),
           PaymentButton(
+            highlightColor: palette.trueWhite,
             onTap: () {
               GoRouter.of(context).go("/home/payment/mtn");
             },
@@ -68,6 +73,7 @@ class PaymentMethodPage extends StatelessWidget {
             height: 14,
           ),
           PaymentButton(
+            highlightColor: palette.trueWhite,
             onTap: () {
               GoRouter.of(context).go("/home/payment/orange");
             },
@@ -76,8 +82,8 @@ class PaymentMethodPage extends StatelessWidget {
             color: palette.textDark,
             backColor: palette.orange,
           ),
-          const SizedBox(
-            height: 150,
+          SizedBox(
+            height: size.width * 0.33,
           ),
           Container(
             height: 44,

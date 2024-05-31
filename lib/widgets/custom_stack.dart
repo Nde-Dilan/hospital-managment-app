@@ -8,6 +8,9 @@ class CustomStack extends StatelessWidget {
   final double topSpacing;
   final double radius;
 
+  /// Where to go when we click on back button(or icon )
+  final String? goTo;
+
   /// Values for the positionned element
   final double? top;
   final double? left;
@@ -26,7 +29,7 @@ class CustomStack extends StatelessWidget {
   /// Fontsize of [title]
   final double fontSize;
 
-  /// Spacing between back button and [title]
+  /// Spacing between back button and the phone's border
   final double spacing;
 
   /// Spacing between [positionedWidget]  and the bottom of the stack
@@ -57,7 +60,8 @@ class CustomStack extends StatelessWidget {
       this.left,
       this.width,
       this.height,
-      required this.bottomSpacing});
+      required this.bottomSpacing,
+      this.goTo});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +92,9 @@ class CustomStack extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  GoRouter.of(context).pop();
+                  goTo == null
+                      ? GoRouter.of(context).pop()
+                      : GoRouter.of(context).go(goTo!);
                 },
                 child: Container(
                   padding: const EdgeInsets.all(8),
@@ -114,6 +120,47 @@ class CustomStack extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              notifBtn != null
+                  ? Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          GoRouter.of(context).go('/notifications');
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.35,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: const Padding(
+                              padding: EdgeInsets.all(0.0),
+                              child: Image(
+                                  image: AssetImage(
+                                      'assets/icons/notification.png'))),
+                        ),
+                      ),
+                    )
+                  : Text(""),
+              accountBtn != null
+                  ? Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          GoRouter.of(context).go('/home/profile');
+                        },
+                        child: Container(
+                          // width: MediaQuery.of(context).size.width * 0.235,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.rectangle,
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(12.0),
+                            child: Image(
+                                width: 55,
+                                image: AssetImage('assets/icons/account.png')),
+                          ),
+                        ),
+                      ),
+                    )
+                  : Text(""),
             ],
           ),
         )),

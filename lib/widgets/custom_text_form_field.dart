@@ -8,8 +8,8 @@ class CustomTextFormField extends StatefulWidget {
   final String errorMessage;
   final String hintText;
 
-  IconData? icon;
-  IconData? prefixIcon;
+  final IconData? icon;
+  final IconData? prefixIcon;
   CustomTextFormField(
       {super.key,
       this.prefixIcon,
@@ -28,6 +28,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     return TextFormField(
+      textAlign: TextAlign.left,
       obscureText: widget.obscureText,
       obscuringCharacter: '*',
       validator: (value) {
@@ -37,7 +38,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         return null;
       },
       decoration: InputDecoration(
-        // label: const Text('John Doe William'),
         hintText: widget.hintText,
         prefixIcon: Icon(
           widget.prefixIcon,

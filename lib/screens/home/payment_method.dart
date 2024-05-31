@@ -20,6 +20,7 @@ class PaymentMethodPage extends StatelessWidget {
       body: Column(
         children: [
           CustomStack(
+            goTo: "/home/profile/personal-details",
             topSpacing: 0,
             mainAxisAlignment: MainAxisAlignment.start,
             radius: 20,
@@ -68,6 +69,7 @@ class PaymentMethodPage extends StatelessWidget {
             moneyType: "Mobile Money",
             color: palette.trueWhite,
             backColor: palette.mtn,
+            fontSize: 20,
           ),
           const SizedBox(
             height: 14,
@@ -81,6 +83,7 @@ class PaymentMethodPage extends StatelessWidget {
             moneyType: "Orange Money",
             color: palette.textDark,
             backColor: palette.orange,
+            fontSize: 20,
           ),
           SizedBox(
             height: size.width * 0.33,
@@ -93,7 +96,7 @@ class PaymentMethodPage extends StatelessWidget {
                 Expanded(
                   child: CustomButton(
                     onTap: () {
-                      GoRouter.of(context).pop();
+                      GoRouter.of(context).go("/home/personal-details");
                     },
                     text: "Back", radius: 28,
                     // width: 300,

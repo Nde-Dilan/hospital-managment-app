@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
 import 'package:hospital_managment_app/screens/home/appointements.dart';
+import 'package:hospital_managment_app/screens/home/congrats.dart';
 import 'package:hospital_managment_app/screens/home/payment_method.dart';
 import 'package:hospital_managment_app/screens/home/payment_with_page.dart';
 import 'package:hospital_managment_app/screens/home_page.dart';
@@ -127,6 +128,12 @@ class MyApp extends StatelessWidget {
                     isMTNFirst: false,
                     image: "assets/images/orange-money.png",
                   ),
+                ),
+                
+                GoRoute(
+                  path: 'congrats',
+                  builder: (BuildContext context, GoRouterState state) =>
+                      const CongratsPage(),
                 ),
               ]),
           GoRoute(

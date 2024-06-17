@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 class CustomStack extends StatelessWidget {
   /// Spacing from the top of the phone to the stack
   final double topSpacing;
+  final bool? shouldRadiusBackIcon;
   final double radius;
 
   /// Where to go when we click on back button(or icon )
@@ -46,6 +47,7 @@ class CustomStack extends StatelessWidget {
   const CustomStack(
       {super.key,
       required this.topSpacing,
+      this.shouldRadiusBackIcon,
       required this.radius,
       required this.horizontalSpacing,
       this.name,
@@ -98,11 +100,11 @@ class CustomStack extends StatelessWidget {
                 },
                 child: Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
+                  decoration: shouldRadiusBackIcon == null || shouldRadiusBackIcon == false  ? BoxDecoration(
                     color: palette.trueWhite,
                     // border: Border.all(width: 4, color: palette.violet),
                     borderRadius: const BorderRadius.all(Radius.circular(50)),
-                  ),
+                  ) : null,
                   child: Icon(
                     Icons.arrow_back_ios_new_sharp,
                     size: 30,
@@ -139,7 +141,7 @@ class CustomStack extends StatelessWidget {
                         ),
                       ),
                     )
-                  : Text(""),
+                  : const Text(""),
               accountBtn != null
                   ? Expanded(
                       child: InkWell(
@@ -160,7 +162,7 @@ class CustomStack extends StatelessWidget {
                         ),
                       ),
                     )
-                  : Text(""),
+                  : const Text(""),
             ],
           ),
         )),

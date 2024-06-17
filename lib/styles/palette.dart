@@ -20,4 +20,5 @@ class Palette {
   Color get trueWhite => const Color(0xffffffff);
   Color get mtn => const Color(0xffFECA05);
   Color get orange => const Color(0xffFF7900);
+  Color get badge => const Color(0xfFCFC8FF);
 }

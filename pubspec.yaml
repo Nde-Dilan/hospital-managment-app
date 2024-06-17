@@ -41,6 +41,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   carousel_slider: ^4.2.1
   icons_plus: ^4.0.0
+  image_picker: ^1.1.2
   # firebase_auth: ^4.19.6
 
 dev_dependencies:

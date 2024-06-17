@@ -5,8 +5,10 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 class SearchInput extends StatefulWidget {
-  const SearchInput({super.key});
+  const SearchInput({super.key, this.topSpacing, this.placeholder});
 
+  final double? topSpacing;
+  final String? placeholder;
   @override
   State<SearchInput> createState() => _SearchInputState();
 }
@@ -24,8 +26,11 @@ class _SearchInputState extends State<SearchInput> {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
+        SizedBox(
+          height: widget.topSpacing,
+        ),
         Container(
-          margin: const EdgeInsets.only(top: 17, left: 17, right: 2),
+          margin: const EdgeInsets.only(top: 17, left: 7, right: 2),
           width: 300,
           height: 56,
           decoration: BoxDecoration(
@@ -39,6 +44,7 @@ class _SearchInputState extends State<SearchInput> {
           ),
           child: TextField(
             decoration: InputDecoration(
+                hintText: widget.placeholder,
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: SvgPicture.asset("assets/icons/Search.svg"),
@@ -53,10 +59,7 @@ class _SearchInputState extends State<SearchInput> {
         ),
         Container(
             width: 50,
-            // height: 50,
-            margin: const EdgeInsets.only(
-              right: 4,
-            ),
+            margin: const EdgeInsets.only(right: 40, top: 10),
             child:
                 const Image(image: AssetImage('assets/icons/preferences.png'))),
         const SizedBox(

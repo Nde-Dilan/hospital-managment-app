@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hospital_managment_app/screens/appointments/current_appointments.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
 import 'package:hospital_managment_app/screens/home/appointements.dart';
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const WelcomeScreen(),
+          const CurrentAppointmentsPage(),
     ),
     GoRoute(
         path: '/auth',

@@ -4,6 +4,7 @@ import 'package:hospital_managment_app/screens/appointments/current_appointments
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
 import 'package:hospital_managment_app/screens/home/appointements.dart';
+import 'package:hospital_managment_app/screens/home/appointment_page.dart';
 import 'package:hospital_managment_app/screens/home/congrats.dart';
 import 'package:hospital_managment_app/screens/home/payment_method.dart';
 import 'package:hospital_managment_app/screens/home/payment_with_page.dart';
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const CurrentAppointmentsPage(),
+          const Appointmentpage(),
     ),
     GoRoute(
         path: '/auth',
@@ -103,6 +104,18 @@ class MyApp extends StatelessWidget {
             path: 'appointments',
             builder: (BuildContext context, GoRouterState state) =>
                 const AppointmentsPage(),
+                routes: [
+                GoRoute(
+                  path: 'doctor',
+                  builder: (BuildContext context, GoRouterState state) =>
+                      const Appointmentpage(),
+                ),
+                GoRoute(
+                  path: 'edit-image',
+                  builder: (BuildContext context, GoRouterState state) =>
+                      const EditImagePage(),
+                ),
+              ]
           ),
           GoRoute(
             path: 'lab-test',

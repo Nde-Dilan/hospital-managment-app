@@ -3,7 +3,6 @@ import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/widgets/app_bar.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/custom_appointment.dart';
-import 'package:hospital_managment_app/widgets/custom_stack.dart';
 import 'package:hospital_managment_app/utils/current_appointments_list.dart';
 import 'package:hospital_managment_app/widgets/search_input.dart';
 import 'package:provider/provider.dart';

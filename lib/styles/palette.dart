@@ -16,6 +16,7 @@ class Palette {
   Color get category => const Color(0xFFCFC8FF);
   Color get backgroundMain => const Color(0xffF8FAFF);
   Color get textDark => const Color(0xff000000);
+  Color get textFade => const Color(0xff878787);
   Color get congrasColor => const Color(0xff0B72AC);
   Color get trueWhite => const Color(0xffffffff);
   Color get mtn => const Color(0xffFECA05);

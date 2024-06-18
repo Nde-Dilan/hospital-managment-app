@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget {
       this.notifBtn,
       this.accountBtn,
       required this.positionedWidget,
-      required this.mainAxisAlignment});
+      required this.mainAxisAlignment, this.widthFactor=.7});
 
   /// Spacing from the top of the phone to the stack
   final double topSpacing;
@@ -35,6 +35,7 @@ class CustomAppBar extends StatelessWidget {
   final double? top;
   final double? left;
   final double? width;
+  final double widthFactor;
   final double? height;
 
   /// Title after the back icon
@@ -67,7 +68,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
-
+    final Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
         Container(
@@ -118,7 +119,7 @@ class CustomAppBar extends StatelessWidget {
               ],
             )),
         Positioned(
-            // top: 44,
+            // bottom: -4,
             child: Row(
           mainAxisAlignment: mainAxisAlignment,
           children: [
@@ -143,11 +144,14 @@ class CustomAppBar extends StatelessWidget {
             SizedBox(
               width: horizontalSpacing,
             ),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: fontSize,
-                fontWeight: FontWeight.bold,
+            SizedBox(
+              width: size.width * widthFactor,
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             Expanded(

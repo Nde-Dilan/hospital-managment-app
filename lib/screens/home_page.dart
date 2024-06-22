@@ -85,7 +85,10 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Positioned(top: 108, child: SearchInput()),
+                const Positioned(
+                    top: 108,
+                    child: SearchInput(
+                        placeholder: "Search here...", leftSpacing: 57)),
                 const Positioned(top: 5, child: HeroText()),
               ],
             ),
@@ -135,7 +138,7 @@ class HomePage extends StatelessWidget {
                       Category(
                           name: "History",
                           path: "assets/icons/history.svg",
-                          goTo: "/home/history"),
+                          goTo: "/home/appointments/appointment-history"),
                       Category(
                           name: "Downloads",
                           path: "assets/icons/downloads.svg",

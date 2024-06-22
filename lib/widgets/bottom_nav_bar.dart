@@ -50,7 +50,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               onPressed: () {
                 setState(() {
                   currentTab = 2;
-                  GoRouter.of(context).go("/home");
+                  GoRouter.of(context).go("/home/appointments/current-appointment");
                 });
               },
               isActive: currentTab == 2 ? true : false,

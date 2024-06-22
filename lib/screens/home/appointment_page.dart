@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/utils/doctor.dart';
 import 'package:hospital_managment_app/utils/doctor_stats.dart';
+import 'package:hospital_managment_app/utils/patient.dart';
 import 'package:hospital_managment_app/widgets/app_bar.dart';
+import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/search_input.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +16,7 @@ class Appointmentpage extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     final palette = context.watch<Palette>();
 
+    Patient patient = Patient(name: 'John Doe', age: "15", gender: "male");
     Doctor doctor = Doctor(
         name: 'Dr. Aman Wins',
         speciality: 'Cardiologists',
@@ -57,9 +60,14 @@ class Appointmentpage extends StatelessWidget {
                     child: Image.asset(
                       doctor.image,
                     )),
+                SizedBox(
+                  height: size.height * .013,
+                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           doctor.name,
@@ -86,28 +94,82 @@ class Appointmentpage extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: size.height * .018,
+                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    ListView.builder(
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            Image.asset(doctorStats[index]["image"]!),
-                            Text(doctorStats[index]["number"]!),
-                            Text(doctorStats[index]["name"]!),
-                          ],
-                        );
-                      },
-                      itemCount: 4,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                    ),
+                    for (var item in doctorStats)
+                      Column(
+                        children: [
+                          Image.asset(item["image"].toString()),
+                          Text(item["number"].toString(),
+                              style: TextStyle(
+                                  color: palette.textDark,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500)),
+                          Text(item["title"].toString(),
+                              style: TextStyle(
+                                  color: palette.textFade,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500)),
+                        ],
+                      ),
                   ],
+                ),
+                SizedBox(
+                  height: size.height * .015,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('About Me',
+                          style: TextStyle(
+                              color: palette.textDark,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600)),
+                      SizedBox(
+                        height: size.height * .009,
+                      ),
+                      Text(doctor.about,
+                          style: TextStyle(
+                              color: palette.textFade,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500)),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('Patient Information',
+                          style: TextStyle(
+                              color: palette.textDark,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600)),
+                      SizedBox(
+                        height: size.height * .009,
+                      ),
+                      Text(patient.getPatientInformation(),
+                          style: TextStyle(
+                              color: palette.textFade,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500)),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: const CustomBottomNavBar(
+        page: 2,
       ),
     );
   }

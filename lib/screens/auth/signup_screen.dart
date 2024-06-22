@@ -185,6 +185,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                   // I agree to the processing of personal data checkbox
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Checkbox(
                         value: agreePersonalData,
@@ -195,15 +196,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                         activeColor: const Color(0xFF7B61FF),
                       ),
-                      const Text(
-                        'I agree to the processing of ',
-                        style: TextStyle(color: Colors.black45),
-                      ),
-                      const Text(
-                        'personal data',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF7B61FF),
+                      const Expanded(
+                        child: Text(
+                          softWrap: true,
+                          'I agree to the processing of personal data',
+                          style: TextStyle(color: Colors.black45),
                         ),
                       ),
                     ],
@@ -231,7 +228,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         }*/
                         GoRouter.of(context).go("/home");
                       },
-                      child: const Text('Sign up'),
+                      child: const Text('Sign up',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          )),
                     ),
                   ),
                   const SizedBox(height: 30.0),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/widgets/app_bar.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
@@ -44,7 +45,8 @@ class CurrentAppointmentsPage extends StatelessWidget {
                   //TODO: Get the appointment data from the API by hour and render it accordingly
                   return GestureDetector(
                     onTap: () {
-                      
+                      GoRouter.of(context).go('/home/appointments/my-appointment');
+
                     },
                     child: AppointmentItem(
                       name: currentAppointmentsList[index]["name"].toString(),

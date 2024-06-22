@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:hospital_managment_app/screens/appointments/current_appointments.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
-import 'package:hospital_managment_app/screens/home/appointements.dart';
+import 'package:hospital_managment_app/screens/home/appointement_history.dart';
+import 'package:hospital_managment_app/screens/home/appointments.dart';
 import 'package:hospital_managment_app/screens/home/appointment_page.dart';
 import 'package:hospital_managment_app/screens/home/congrats.dart';
 import 'package:hospital_managment_app/screens/home/payment_method.dart';
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const Appointmentpage(),
+          const WelcomeScreen(),
     ),
     GoRoute(
         path: '/auth',
@@ -106,14 +107,19 @@ class MyApp extends StatelessWidget {
                 const AppointmentsPage(),
                 routes: [
                 GoRoute(
-                  path: 'doctor',
+                  path: 'current-appointment',
+                  builder: (BuildContext context, GoRouterState state) =>
+                      const CurrentAppointmentsPage(),
+                ),
+                GoRoute(
+                  path: 'my-appointment',
                   builder: (BuildContext context, GoRouterState state) =>
                       const Appointmentpage(),
                 ),
                 GoRoute(
-                  path: 'edit-image',
+                  path: 'appointment-history',
                   builder: (BuildContext context, GoRouterState state) =>
-                      const EditImagePage(),
+                      const AppointmentHistoryPage(),
                 ),
               ]
           ),

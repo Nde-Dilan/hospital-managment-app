@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
 import 'package:hospital_managment_app/theme/theme.dart';
+import 'package:go_router/go_router.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -104,7 +105,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       suffixIcon: IconButton(
                         icon: Icon(
-                          _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                          _obscurePassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                         ),
                         onPressed: () {
                           setState(() {
@@ -155,13 +158,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF7B61FF), // Button background color
+                        backgroundColor:
+                            const Color(0xFF7B61FF), // Button background color
                       ),
                       onPressed: () {
-                        if (_formSignInKey.currentState!.validate()) {  
+                        if (_formSignInKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Processing Data')),
                           );
+                          GoRouter.of(context).go("/auth/sign-in");
                         }
                       },
                       child: const Text('Sign in'),
@@ -218,7 +223,8 @@ class _SignInScreenState extends State<SignInScreen> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (e) => const SignUpScreen()),
+                            MaterialPageRoute(
+                                builder: (e) => const SignUpScreen()),
                           );
                         },
                         child: const Text(

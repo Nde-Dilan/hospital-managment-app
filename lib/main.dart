@@ -3,20 +3,20 @@ import 'package:flutter/services.dart';
 import 'package:hospital_managment_app/screens/appointments/current_appointments.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
-import 'package:hospital_managment_app/screens/home/appointement_history.dart';
-import 'package:hospital_managment_app/screens/home/appointments.dart';
-import 'package:hospital_managment_app/screens/home/appointment_page.dart';
-import 'package:hospital_managment_app/screens/home/congrats.dart';
-import 'package:hospital_managment_app/screens/home/payment_method.dart';
-import 'package:hospital_managment_app/screens/home/payment_with_page.dart';
-import 'package:hospital_managment_app/screens/home_page.dart';
+import 'package:hospital_managment_app/screens/lab/lab_test_page.dart';
+import 'package:hospital_managment_app/screens/appointments/appointments.dart';
+import 'package:hospital_managment_app/screens/appointments/appointment_page.dart';
+import 'package:hospital_managment_app/screens/notifications/notification_page.dart';
+import 'package:hospital_managment_app/screens/payment/congrats.dart';
+import 'package:hospital_managment_app/screens/payment/payment_method.dart';
+import 'package:hospital_managment_app/screens/payment/payment_with_page.dart';
+import 'package:hospital_managment_app/screens/home/home_page.dart';
 import 'package:hospital_managment_app/screens/profile/edit_image.dart';
 import 'package:hospital_managment_app/screens/profile/personal_details.dart';
 import 'package:hospital_managment_app/screens/profile/profile.dart';
 import 'package:hospital_managment_app/screens/welcome_screen.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/wrapper/app_lifecycle.dart';
-
 
 //Since using print() will reduce the app's performance we can use this
 import 'package:logging/logging.dart';
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const WelcomeScreen(),
+          const NotificationPage(),
     ),
     GoRoute(
         path: '/auth',
@@ -86,6 +86,11 @@ class MyApp extends StatelessWidget {
             const HomePage(),
         routes: [
           GoRoute(
+            path: "notifications",
+            builder: (BuildContext context, GoRouterState state) =>
+                const NotificationPage(),
+          ),
+          GoRoute(
               path: 'profile',
               builder: (BuildContext context, GoRouterState state) =>
                   const ProfileScreen(),
@@ -102,10 +107,10 @@ class MyApp extends StatelessWidget {
                 ),
               ]),
           GoRoute(
-            path: 'appointments',
-            builder: (BuildContext context, GoRouterState state) =>
-                const AppointmentsPage(),
-                routes: [
+              path: 'appointments',
+              builder: (BuildContext context, GoRouterState state) =>
+                  const AppointmentsPage(),
+              routes: [
                 GoRoute(
                   path: 'current-appointment',
                   builder: (BuildContext context, GoRouterState state) =>
@@ -119,13 +124,12 @@ class MyApp extends StatelessWidget {
                 GoRoute(
                   path: 'appointment-history',
                   builder: (BuildContext context, GoRouterState state) =>
-                      const AppointmentHistoryPage(),
+                      const Appointmentpage(),
                 ),
-              ]
-          ),
+              ]),
           GoRoute(
             path: 'lab-test',
-            builder: (context, state) => const AppointmentsPage(),
+            builder: (context, state) => const LabTesPage(),
           ),
           GoRoute(
               path: 'payment',
@@ -149,7 +153,6 @@ class MyApp extends StatelessWidget {
                     image: "assets/images/orange-money.png",
                   ),
                 ),
-                
                 GoRoute(
                   path: 'congrats',
                   builder: (BuildContext context, GoRouterState state) =>

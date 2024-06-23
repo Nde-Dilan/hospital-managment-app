@@ -22,7 +22,8 @@ class CustomAppBar extends StatelessWidget {
       this.notifBtn,
       this.accountBtn,
       required this.positionedWidget,
-      required this.mainAxisAlignment, this.widthFactor=.7});
+      required this.mainAxisAlignment,
+      this.widthFactor = .7});
 
   /// Spacing from the top of the phone to the stack
   final double topSpacing;
@@ -87,7 +88,7 @@ class CustomAppBar extends StatelessWidget {
           right: 45,
           child: InkWell(
             onTap: () {
-              GoRouter.of(context).go('/notifications');
+              GoRouter.of(context).go('/home/notifications');
             },
             child: Container(
               margin: const EdgeInsets.only(top: 10.0),

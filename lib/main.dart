@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:hospital_managment_app/screens/appointments/current_appointments.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
+import 'package:hospital_managment_app/screens/lab/lab_results_page.dart';
 import 'package:hospital_managment_app/screens/lab/lab_test_page.dart';
 import 'package:hospital_managment_app/screens/appointments/appointments.dart';
 import 'package:hospital_managment_app/screens/appointments/appointment_page.dart';
@@ -11,6 +12,7 @@ import 'package:hospital_managment_app/screens/payment/congrats.dart';
 import 'package:hospital_managment_app/screens/payment/payment_method.dart';
 import 'package:hospital_managment_app/screens/payment/payment_with_page.dart';
 import 'package:hospital_managment_app/screens/home/home_page.dart';
+import 'package:hospital_managment_app/screens/prescriptions/prescription_page.dart';
 import 'package:hospital_managment_app/screens/profile/edit_image.dart';
 import 'package:hospital_managment_app/screens/profile/personal_details.dart';
 import 'package:hospital_managment_app/screens/profile/profile.dart';
@@ -63,7 +65,7 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const NotificationPage(),
+          const PrescriptionPage(),
     ),
     GoRoute(
         path: '/auth',
@@ -161,7 +163,7 @@ class MyApp extends StatelessWidget {
               ]),
           GoRoute(
             path: 'prescriptions',
-            builder: (context, state) => const AppointmentsPage(),
+            builder: (context, state) => const PrescriptionPage(),
           ),
           GoRoute(
             path: 'history',

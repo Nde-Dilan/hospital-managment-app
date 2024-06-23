@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/utils/appointment_history.dart';
 import 'package:hospital_managment_app/widgets/app_bar.dart';

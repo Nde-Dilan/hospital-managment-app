@@ -23,7 +23,7 @@ class CustomAppBar extends StatelessWidget {
       this.accountBtn,
       required this.positionedWidget,
       required this.mainAxisAlignment,
-      this.widthFactor = .7});
+      this.widthFactor = .7, this.containerHeight});
 
   /// Spacing from the top of the phone to the stack
   final double topSpacing;
@@ -38,6 +38,7 @@ class CustomAppBar extends StatelessWidget {
   final double? width;
   final double widthFactor;
   final double? height;
+  final double? containerHeight;
 
   /// Title after the back icon
   final String title;
@@ -74,7 +75,7 @@ class CustomAppBar extends StatelessWidget {
       children: [
         Container(
           margin: EdgeInsets.only(top: topSpacing),
-          height: (MediaQuery.of(context).size.height * 0.25) + bottomSpacing,
+          height: containerHeight ?? (MediaQuery.of(context).size.height * 0.25) + bottomSpacing,
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: palette.violet,

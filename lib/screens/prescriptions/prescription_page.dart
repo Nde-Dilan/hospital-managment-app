@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hospital_managment_app/screens/prescriptions/medication.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
+import 'package:hospital_managment_app/utils/medication_list.dart';
 import 'package:hospital_managment_app/widgets/app_bar.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/search_input.dart';
@@ -40,8 +41,8 @@ class PrescriptionPage extends StatelessWidget {
           bottomSpacing: 0,
         ),
       ),
-      body: Column(
-        children: [
+      body: SingleChildScrollView(
+        child: Column(children: [
           Container(
             margin: EdgeInsets.symmetric(
                 horizontal: size.width * 0.019248,
@@ -89,26 +90,30 @@ class PrescriptionPage extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: size.width*.009,),
-          Container(
-            decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey
-                        .withOpacity(0.5), // Adjust color and opacity
-                    blurRadius: 4.0, // Set blur radius to 4
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-                color: palette.trueWhite,
-                borderRadius: BorderRadius.circular(9)),
+          SizedBox(
+            height: size.width * .009,
+          ),
+          ListView.builder(
+              padding: EdgeInsets.symmetric(
+                  horizontal: size.width * 0.049, vertical: size.width * 0.049),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: medicationList.length,
+              itemBuilder: (context, index) {
+                //TODO: Get the medication  data from the API and render it accordingly
 
-                child: const MedicationWidget(name: 'Ocysius',),
-            
-          )
-        ],
+                return MedicationWidget(
+                  name: medicationList[index]["name"].toString(),
+                  dailyDose: medicationList[index]["dailyDose"].toString(),
+                  startTime: medicationList[index]["startTime"].toString(),
+                  endTime: medicationList[index]["endTime"].toString(),
+                );
+              })
+        ]),
       ),
-      bottomNavigationBar: const CustomBottomNavBar(page: 2,),
+      bottomNavigationBar: const CustomBottomNavBar(
+        page: 2,
+      ),
     );
   }
 }

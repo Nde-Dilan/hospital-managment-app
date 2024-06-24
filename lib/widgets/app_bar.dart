@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
+import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -67,6 +68,9 @@ class CustomAppBar extends StatelessWidget {
   final Widget positionedWidget;
   final MainAxisAlignment mainAxisAlignment;
 
+    static final _log = Logger('app_bar.dart');
+
+
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
@@ -89,6 +93,7 @@ class CustomAppBar extends StatelessWidget {
           right: 45,
           child: InkWell(
             onTap: () {
+              _log.info("Going to notifications");
               GoRouter.of(context).go('/home/notifications');
             },
             child: Container(

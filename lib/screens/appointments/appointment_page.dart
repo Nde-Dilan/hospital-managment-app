@@ -15,6 +15,12 @@ class Appointmentpage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final palette = context.watch<Palette>();
+    TextStyle ratingStyle = TextStyle(
+        color: palette.textDark, fontSize: 12, fontWeight: FontWeight.w500);
+    TextStyle specialityStle = TextStyle(
+        color: palette.textFade, fontSize: 12, fontWeight: FontWeight.w500);
+    TextStyle nameStyle = TextStyle(
+        color: palette.textDark, fontSize: 16, fontWeight: FontWeight.w600);
 
     Patient patient = Patient(name: 'John Doe', age: "15", gender: "male");
     Doctor doctor = Doctor(
@@ -71,26 +77,17 @@ class Appointmentpage extends StatelessWidget {
                       children: [
                         Text(
                           doctor.name,
-                          style: TextStyle(
-                              color: palette.textDark,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
+                          style: nameStyle,
                         ),
                         Text(
                           "${doctor.speciality} | ${doctor.location}",
-                          style: TextStyle(
-                              color: palette.textFade,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500),
+                          style: specialityStle,
                         ),
                       ],
                     ),
                     Text(
                       "⭐ ${doctor.rating}",
-                      style: TextStyle(
-                          color: palette.textDark,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500),
+                      style: ratingStyle,
                     ),
                   ],
                 ),

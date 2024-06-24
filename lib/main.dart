@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hospital_managment_app/screens/appointments/current_appointments.dart';
+import 'package:hospital_managment_app/screens/appointments/set_appointments_page.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
 import 'package:hospital_managment_app/screens/lab/lab_results_page.dart';
@@ -65,7 +66,11 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const PrescriptionPage(),
+          const SetAppointmentPage(
+        name: 'Dr. Jenny Wilson',
+        speciality: 'Dental Surgeon',
+        rating: '4.8',
+      ),
     ),
     GoRoute(
         path: '/auth',

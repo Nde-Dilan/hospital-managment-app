@@ -35,7 +35,7 @@ class HeroText extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                GoRouter.of(context).go('/notifications');
+                GoRouter.of(context).go('/home/notifications');
               },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.35,

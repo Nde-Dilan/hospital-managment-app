@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/utils/doctor_hours.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
-import 'package:hospital_managment_app/widgets/clendar_widget.dart';
+import 'package:hospital_managment_app/widgets/calendar_widget.dart';
 import 'package:hospital_managment_app/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 

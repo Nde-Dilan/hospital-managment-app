@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
-import 'package:hospital_managment_app/utils/doctor.dart';
+import 'package:hospital_managment_app/models/doctor.dart';
 import 'package:hospital_managment_app/utils/doctor_stats.dart';
-import 'package:hospital_managment_app/utils/patient.dart';
+import 'package:hospital_managment_app/models/patient.dart';
 import 'package:hospital_managment_app/widgets/app_bar.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/search_input.dart';
@@ -22,16 +22,32 @@ class Appointmentpage extends StatelessWidget {
     TextStyle nameStyle = TextStyle(
         color: palette.textDark, fontSize: 16, fontWeight: FontWeight.w600);
 
-    Patient patient = Patient(name: 'John Doe', age: "15", gender: "male");
+    // Patient p = Patient();
+
+    Patient patient = Patient(
+      age: "15",
+      gender: "male",
+      email: 'doe@gmail.com',
+      name: 'John Doe',
+      image: '',
+      location: 'Yaoundé',
+      phoneNumber: '694525931',
+      password: '123456789',
+    );
     Doctor doctor = Doctor(
+        age: "32",
+        gender: "Male",
         name: 'Dr. Aman Wins',
+        email: 'wins@gmail.com',
         speciality: 'Cardiologists',
         location: 'Mars Hospital',
         image: 'assets/images/doctor-placeholder-appointment.png',
         rating: '5.0 (332 reviews)',
         experience: '11+',
         about:
-            'Dr. Carly Angel is the top most immunologists specialist in Crist Hospital in London, UK. She achived several awards for her wonderful contribution Read More. . . ');
+            'Dr. Carly Angel is the top most immunologists specialist in Crist Hospital in London, UK. She achived several awards for her wonderful contribution Read More. . . ',
+        phoneNumber: '694525931',
+        password: '123456789');
 
     return Scaffold(
       appBar: PreferredSize(

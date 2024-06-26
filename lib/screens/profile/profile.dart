@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hospital_managment_app/models/user.dart';
+import 'package:hospital_managment_app/notifiers/Is_doctor_notifier.dart';
+import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +17,10 @@ class ProfileScreen extends StatelessWidget {
     final palette = context.watch<Palette>();
     final style = TextStyle(
         color: palette.textDark, fontSize: 19, fontWeight: FontWeight.bold);
-    const String name = "John Doe William";
+    final User user = context.watch<UserNotifier>().getUser();
+    final bool isDoctor = context.watch<IsDoctorNotifier>().isDoctor;
+
+    String name = user.name;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -42,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
         Stack(
           children: [
             Image.asset(
-              "assets/icons/account-big.png",
+              user.image,
               height: 120,
               width: 120,
               fit: BoxFit.cover,
@@ -84,12 +90,16 @@ class ProfileScreen extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: optionList.length,
             itemBuilder: (context, index) {
-              return CustomInkWell(
-                name: optionList[index]["name"].toString(),
-                onTap: optionList[index]["onTap"].toString(),
-                style: optionList[index]["style"] as TextStyle,
-                icon: optionList[index]["icon"] as IconData,
-              );
+              if (isDoctor && index == 2) {
+                return const SizedBox.shrink();
+              } else {
+                return CustomInkWell(
+                  name: optionList[index]["name"].toString(),
+                  onTap: optionList[index]["onTap"].toString(),
+                  style: optionList[index]["style"] as TextStyle,
+                  icon: optionList[index]["icon"] as IconData,
+                );
+              }
             }),
       ])),
       bottomNavigationBar: const CustomBottomNavBar(

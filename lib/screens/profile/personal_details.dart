@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_managment_app/models/user.dart';
+import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/custom_button.dart';
@@ -26,9 +28,14 @@ class _PersonalDetailsState extends State<PersonalDetails> {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
+    final Size size = MediaQuery.of(context).size;
+
     const fontSize = 29.0;
+    double textSize = size.width * 0.049;
     const radius = 20.0;
-    const String name = "Jonh Doe William";
+    final User user = context.watch<UserNotifier>().getUser();
+
+    String name = user.name;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -39,7 +46,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             topSpacing: 0,
             radius: radius,
             horizontalSpacing: 2,
-            fontSize: 18,
+            fontSize: textSize,
             title: "Edit Personal details",
             mainAxisAlignment: MainAxisAlignment.start,
             positionedWidget: Container(
@@ -61,7 +68,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
             spacing: 2,
             bottomSpacing: 10),
         rectangularMenuArea: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(size.width * 0.019),
           child: Column(
             children: [
               Form(
@@ -75,7 +82,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: palette.textDark,
-                          fontSize: 18),
+                          fontSize: textSize),
                     ),
                     CustomTextFormField(
                       obscureText: false,
@@ -91,7 +98,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: palette.textDark,
-                          fontSize: 18),
+                          fontSize: textSize),
                     ),
                     const SizedBox(
                       height: 14,
@@ -127,7 +134,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: palette.textDark,
-                          fontSize: 18),
+                          fontSize: textSize),
                     ),
                     CustomTextFormField(
                       obscureText: false,
@@ -144,7 +151,7 @@ class _PersonalDetailsState extends State<PersonalDetails> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: palette.textDark,
-                          fontSize: 18),
+                          fontSize: textSize),
                     ),
                     CustomTextFormField(
                       obscureText: false,

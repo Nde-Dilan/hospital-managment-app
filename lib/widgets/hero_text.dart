@@ -6,13 +6,15 @@ import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:provider/provider.dart';
 
 class HeroText extends StatelessWidget {
-  const HeroText({super.key});
+  const HeroText({super.key, required this.name});
+
+      final String name ;
+
 
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
 
-    const String name = "John Doe William";
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_managment_app/models/user.dart';
+import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/category.dart';
@@ -16,6 +18,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
+    final User user = context.watch<UserNotifier>().getUser();
     const double radius = 30.0;
     const double smallRadius = 18.0;
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -91,7 +94,11 @@ class HomePage extends StatelessWidget {
                     top: 108,
                     child: SearchInput(
                         placeholder: "Search here...", leftSpacing: 57)),
-                const Positioned(top: 5, child: HeroText()),
+                Positioned(
+                    top: 5,
+                    child: HeroText(
+                      name: user.name,
+                    )),
               ],
             ),
             const SizedBox(

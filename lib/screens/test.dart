@@ -1,25 +1,22 @@
-// import 'package:flutter/material.dart';
+/// Use this inside the login process
 
-// class MyWidget extends StatelessWidget {
-//   const MyWidget({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return constSingleChildScrollView(
-//         child: SizedBox(
-//           width: screenWidth,
-//           height: screenHeight,
-//           child: ResponsiveScreen(
-//             squarishMainArea: 
-//             rectangularMenuArea: LayoutBuilder(
-//               builder: (BuildContext context, BoxConstraints constraints) {
-//                 final size = constraints.biggest;
-//                 final padding = EdgeInsets.all(size.shortestSide / 30);
-//                 return 
-//               },
-//             ),
-//           ),
-//         ),
-//       ),;
-//   }
-// }
+/**
+ * final Doctor doctor = Doctor(
+              age: "32",
+              gender: "Male",
+              name: 'Dr. Aman Wins',
+              email: 'wins@gmail.com',
+              speciality: 'Cardiologists',
+              location: 'Mars Hospital',
+              image: 'assets/images/doctor-placeholder-appointment.png',
+              rating: '5.0 (332 reviews)',
+              experience: '11+',
+              about:
+                  'Dr. Carly Angel is the top most immunologists specialist in Crist Hospital in London, UK. She achived several awards for her wonderful contribution Read More. . . ',
+              phoneNumber: '694525931',
+              password: '123456789');
+
+          context.read<UserNotifier>().setUser(doctor);
+ * 
+ */

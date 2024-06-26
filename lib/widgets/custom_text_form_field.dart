@@ -58,6 +58,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             )),
         hintStyle: const TextStyle(
           color: Colors.black26,
+          fontSize: 14,
+          
         ),
         border: OutlineInputBorder(
           borderSide: const BorderSide(

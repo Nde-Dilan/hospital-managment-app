@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hospital_managment_app/notifiers/Is_doctor_notifier.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
@@ -57,18 +58,20 @@ class WelcomeDoctor extends StatelessWidget {
             ),
             SizedBox(height: size.width * 0.039),
             CustomButton(
-              text: "Sing In As Admin",
-              radius: 15,
-             onTap: () {
-                GoRouter.of(context).go("/home/true");
-              }
-            ),
+                text: "Sing In As Admin",
+                radius: 15,
+                onTap: () {
+                  GoRouter.of(context).go("/home");
+                }),
             SizedBox(height: size.width * 0.082509),
             CustomButton(
               text: "Sing In As Doctor",
               radius: 15,
               onTap: () {
-                GoRouter.of(context).go("/home/true");
+                const isDoctor = true;
+                Provider.of<IsDoctorNotifier>(context).setIsDoctor(isDoctor);
+
+                GoRouter.of(context).go("/home");
               },
             ),
           ],

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hospital_managment_app/models/doctor.dart';
+import 'package:hospital_managment_app/notifiers/Is_doctor_notifier.dart';
+import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/screens/appointments/current_appointments.dart';
 import 'package:hospital_managment_app/screens/appointments/set_appointments_page.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
@@ -63,10 +66,12 @@ Logger _log = Logger('main.dart');
 
 class MyApp extends StatelessWidget {
   //This contains all the routes of our app (atleast what we are using now)
+
   static final _router = GoRouter(routes: <RouteBase>[
     GoRoute(
       path: '/',
-      builder: (BuildContext context, GoRouterState state) => const WelcomeDoctor(),
+      builder: (BuildContext context, GoRouterState state) =>
+          const WelcomeDoctor(),
     ),
     GoRoute(
         path: '/auth',
@@ -84,14 +89,11 @@ class MyApp extends StatelessWidget {
           ),
         ]),
     GoRoute(
-        path: "/home/:isDoctor",
-        builder: (BuildContext context, GoRouterState state){
-
-          _log.info("This is the value of extra: ${state.pathParameters['isDoctor']}");
-
-    
-          final bool isDoctor = bool.parse(state.pathParameters['isDoctor']!);
-            return  HomePage(isDoctor:isDoctor);
+        path: "/home",
+        builder: (BuildContext context, GoRouterState state) {
+          final bool isDoctor = context.watch<IsDoctorNotifier>().isDoctor;
+          
+          return HomePage(isDoctor: isDoctor);
         },
         routes: [
           GoRoute(
@@ -200,7 +202,9 @@ class MyApp extends StatelessWidget {
     return AppLifecycleObserver(
       child: MultiProvider(
         providers: [
-          /// ChangeNotifierProvider(create: (_) => Counter()),
+          ChangeNotifierProvider(create: (_) => IsDoctorNotifier()),
+          ChangeNotifierProvider(create: (_) => UserNotifier()),
+
           ///
           /// Providing the palette to the whole application. To access it, just use
           /// final palette = context.watch<Palette>();

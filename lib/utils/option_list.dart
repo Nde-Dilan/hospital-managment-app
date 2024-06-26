@@ -58,7 +58,7 @@ final optionList = [
   },
   {
     "name": "Logout",
-    "onTap": "/home",
+    "onTap": "/",
     "style": const TextStyle(
         fontSize: fontSize,
         fontWeight: FontWeight.w600,

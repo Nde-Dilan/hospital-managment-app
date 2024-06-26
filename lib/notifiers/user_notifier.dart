@@ -10,7 +10,7 @@ class UserNotifier extends ChangeNotifier {
     password: "password123",
     name: "John Doe",
     location: "New York",
-    image: "assets/icons/account-big.png",
+    image: "assets/images/doctor-placeholder-appointment.png",
   );
 
   void setUser(User user) {

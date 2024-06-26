@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hospital_managment_app/models/user.dart';
+import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/utils/option_list.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/custom_inkwell.dart';
@@ -13,6 +15,7 @@ class EditImagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
+    final User user = context.watch<UserNotifier>().getUser();
 
     return Scaffold(
       backgroundColor: palette.trueWhite,
@@ -36,11 +39,9 @@ class EditImagePage extends StatelessWidget {
         ),
       ),
       body: ResponsiveScreen(
-          squarishMainArea: Image.asset(
-            "assets/images/profile-picture.png",
-            height: 120,
-            width: 120,
-            fit: BoxFit.cover,
+          squarishMainArea: CircleAvatar(
+            radius: 50.0,
+            backgroundImage: AssetImage(user.image),
           ),
           rectangularMenuArea: Column(
             children: [

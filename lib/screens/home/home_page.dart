@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.isDoctor});
   final bool isDoctor;
 
-  static final _log = Logger('main.dart');
+  static final _log = Logger('home_page.dart');
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +119,7 @@ class HomePage extends StatelessWidget {
                       Category(
                           name: isDoctor ? "Patients Lab Test" : "Lab Test",
                           path: "assets/icons/lab-test.svg",
-                          goTo: "/home/lab-test"),
+                          goTo: isDoctor ? "/home/patient-details" :"/home/lab-test"),
                     ],
                   ),
                   const SizedBox(
@@ -133,7 +133,7 @@ class HomePage extends StatelessWidget {
                           path: isDoctor
                               ? "assets/icons/bio.svg"
                               : "assets/icons/payment.svg",
-                          goTo: "/home/payment"),
+                          goTo: isDoctor ? "/home/appointments/my-appointment" : "/home/payment"),
                       Category(
                           name: isDoctor
                               ? "Diagnostics &\n Treatment"

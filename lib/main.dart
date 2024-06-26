@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hospital_managment_app/models/doctor.dart';
+import 'package:hospital_managment_app/models/patient.dart';
 import 'package:hospital_managment_app/notifiers/Is_doctor_notifier.dart';
 import 'package:hospital_managment_app/notifiers/user_notifier.dart';
+import 'package:hospital_managment_app/notifiers/doctor_notifier.dart';
 import 'package:hospital_managment_app/screens/appointments/current_appointments.dart';
 import 'package:hospital_managment_app/screens/appointments/set_appointments_page.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
+import 'package:hospital_managment_app/screens/doctor/patient_page.dart';
+import 'package:hospital_managment_app/screens/doctor/patients_page.dart';
 import 'package:hospital_managment_app/screens/doctor/welcome_page.dart';
 import 'package:hospital_managment_app/screens/lab/lab_results_page.dart';
 import 'package:hospital_managment_app/screens/lab/lab_test_page.dart';
-import 'package:hospital_managment_app/screens/appointments/appointments.dart';
 import 'package:hospital_managment_app/screens/appointments/appointment_page.dart';
 import 'package:hospital_managment_app/screens/notifications/notification_page.dart';
 import 'package:hospital_managment_app/screens/payment/congrats.dart';
@@ -71,7 +74,7 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const WelcomeDoctor(),
+          const PatientsPage(),
     ),
     GoRoute(
         path: '/auth',
@@ -96,6 +99,7 @@ class MyApp extends StatelessWidget {
           return HomePage(isDoctor: isDoctor);
         },
         routes: [
+
           GoRoute(
             path: "set-appointment",
             builder: (BuildContext context, GoRouterState state) =>
@@ -109,6 +113,20 @@ class MyApp extends StatelessWidget {
             path: "notifications",
             builder: (BuildContext context, GoRouterState state) =>
                 const NotificationPage(),
+          ),
+          GoRoute(
+            path: "patient-details",
+            builder: (BuildContext context, GoRouterState state) =>
+                const PatientsPage(),
+            routes: [
+              GoRoute(path: 'single-patient/:id',
+                  builder: (BuildContext context, GoRouterState state) {
+
+                    ///Get the ID of the patient we click on and open the details of that patient
+                final int id = int.parse(state.pathParameters['id']!);
+                return PatientPage(id: id);
+              }),
+              ]
           ),
           GoRoute(
               path: 'profile',
@@ -129,7 +147,7 @@ class MyApp extends StatelessWidget {
           GoRoute(
               path: 'appointments',
               builder: (BuildContext context, GoRouterState state) =>
-                  const AppointmentsPage(),
+                  const CurrentAppointmentsPage(),
               routes: [
                 GoRoute(
                   path: 'current-appointment',
@@ -185,11 +203,11 @@ class MyApp extends StatelessWidget {
           ),
           GoRoute(
             path: 'history',
-            builder: (context, state) => const AppointmentsPage(),
+            builder: (context, state) => const CurrentAppointmentsPage(),
           ),
           GoRoute(
             path: 'downloads',
-            builder: (context, state) => const AppointmentsPage(),
+            builder: (context, state) => const CurrentAppointmentsPage(),
           ),
         ]),
   ]);
@@ -204,6 +222,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => IsDoctorNotifier()),
           ChangeNotifierProvider(create: (_) => UserNotifier()),
+          ChangeNotifierProvider(create: (_) => DoctorNotifier()),
 
           ///
           /// Providing the palette to the whole application. To access it, just use

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hospital_managment_app/models/doctor.dart';
+import 'package:hospital_managment_app/notifiers/Is_doctor_notifier.dart';
+import 'package:hospital_managment_app/notifiers/doctor_notifier.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +27,9 @@ class CustomAppBar extends StatelessWidget {
       this.accountBtn,
       required this.positionedWidget,
       required this.mainAxisAlignment,
-      this.widthFactor = .7, this.containerHeight});
+      this.widthFactor = .7,
+      this.containerHeight,
+      this.introText});
 
   /// Spacing from the top of the phone to the stack
   final double topSpacing;
@@ -43,6 +48,9 @@ class CustomAppBar extends StatelessWidget {
 
   /// Title after the back icon
   final String title;
+
+  /// Text after the notif icon
+  final String? introText;
 
   /// Name of the client if the page needs it
   final String? name;
@@ -68,18 +76,23 @@ class CustomAppBar extends StatelessWidget {
   final Widget positionedWidget;
   final MainAxisAlignment mainAxisAlignment;
 
-    static final _log = Logger('app_bar.dart');
-
+  static final _log = Logger('app_bar.dart');
 
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final Size size = MediaQuery.of(context).size;
+
+    final bool isDoctor = context.watch<IsDoctorNotifier>().isDoctor;
+
+    Doctor doctor = context.watch<DoctorNotifier>().getDoctor();
+
     return Stack(
       children: [
         Container(
           margin: EdgeInsets.only(top: topSpacing),
-          height: containerHeight ?? (MediaQuery.of(context).size.height * 0.25) + bottomSpacing,
+          height: containerHeight ??
+              (MediaQuery.of(context).size.height * 0.25) + bottomSpacing,
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             color: palette.violet,
@@ -107,21 +120,21 @@ class CustomAppBar extends StatelessWidget {
             ),
           ),
         ),
-        const Positioned(
+        Positioned(
             top: 85,
             left: 22,
             child: Column(
               children: [
                 Text(
-                  "View Appointments,",
-                  style: TextStyle(fontSize: 14, color: Color(0xffF3F0F0)),
+                   introText!=null ? introText! : "View Appointments,",
+                  style: TextStyle(fontSize: 14, color: palette.trueWhite),
                 ),
                 Text(
-                  "John Doe William",
+                  isDoctor ? doctor.name : "John Doe William",
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
-                      color: Colors.black),
+                      color: palette.textDark),
                 ),
               ],
             )),

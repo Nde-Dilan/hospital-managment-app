@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_managment_app/models/user.dart';
+import 'package:hospital_managment_app/notifiers/Is_doctor_notifier.dart';
+import 'package:hospital_managment_app/notifiers/doctor_notifier.dart';
+import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/models/doctor.dart';
 import 'package:hospital_managment_app/utils/doctor_stats.dart';
@@ -22,8 +26,6 @@ class Appointmentpage extends StatelessWidget {
     TextStyle nameStyle = TextStyle(
         color: palette.textDark, fontSize: 16, fontWeight: FontWeight.w600);
 
-    // Patient p = Patient();
-
     Patient patient = Patient(
       age: "15",
       gender: "male",
@@ -34,34 +36,24 @@ class Appointmentpage extends StatelessWidget {
       phoneNumber: '694525931',
       password: '123456789',
     );
-    Doctor doctor = Doctor(
-        age: "32",
-        gender: "Male",
-        name: 'Dr. Aman Wins',
-        email: 'wins@gmail.com',
-        speciality: 'Cardiologists',
-        location: 'Mars Hospital',
-        image: 'assets/images/doctor-placeholder-appointment.png',
-        rating: '5.0 (332 reviews)',
-        experience: '11+',
-        about:
-            'Dr. Carly Angel is the top most immunologists specialist in Crist Hospital in London, UK. She achived several awards for her wonderful contribution Read More. . . ',
-        phoneNumber: '694525931',
-        password: '123456789');
+
+    Doctor doctor = context.watch<DoctorNotifier>().getDoctor();
+
+    final bool isDoctor = context.watch<IsDoctorNotifier>().isDoctor;
 
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height * .29),
-        child: const CustomAppBar(
+        child: CustomAppBar(
           topSpacing: 0,
           radius: 20,
           horizontalSpacing: 14,
           widthFactor: .558,
           fontSize: 20,
-          title: "My Appointments",
+          title: isDoctor ? "My Biography " : "My Appointments",
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           top: 114,
-          positionedWidget: SearchInput(
+          positionedWidget: const SearchInput(
             topSpacing: 90,
             placeholder: "Search here...",
           ),
@@ -102,7 +94,7 @@ class Appointmentpage extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "⭐ ${doctor.rating}",
+                      "⭐ ${doctor.rating} (${doctor.review} reviews)",
                       style: ratingStyle,
                     ),
                   ],

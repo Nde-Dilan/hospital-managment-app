@@ -47,11 +47,10 @@ class ProfileScreen extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Stack(
           children: [
-            Image.asset(
-              user.image,
-              height: 120,
-              width: 120,
-              fit: BoxFit.cover,
+            CircleAvatar(
+              radius: 70.0,
+              backgroundImage: AssetImage(
+                  user.image),
             ),
             Positioned(
                 bottom: 20,

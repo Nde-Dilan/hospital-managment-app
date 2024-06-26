@@ -8,7 +8,8 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  const HomePage({super.key, required this.isDoctor});
+  final bool isDoctor;
 
   static final _log = Logger('main.dart');
 
@@ -19,7 +20,8 @@ class HomePage extends StatelessWidget {
     const double smallRadius = 18.0;
     final double screenWidth = MediaQuery.of(context).size.width;
 
-    _log.info("Painting the top and bottom layout");
+    _log.info(
+        "Painting the top and bottom layout with a value of IsDoctor set to $isDoctor");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: palette.trueWhite,
@@ -98,41 +100,47 @@ class HomePage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(30),
               color: palette.trueWhite,
-              child: const Column(
+              child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Category(
-                          name: "Appointments",
+                          name: isDoctor ? "Your Appointments" : "Appointments",
                           path: "assets/icons/appointments.svg",
                           goTo: "/home/appointements"),
                       Category(
-                          name: "Lab Test",
+                          name: isDoctor ? "Patients Lab Test" : "Lab Test",
                           path: "assets/icons/lab-test.svg",
                           goTo: "/home/lab-test"),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Category(
-                          name: "Payment",
-                          path: "assets/icons/payment.svg",
+                          name: isDoctor ? "Your Biography" : "Payment",
+                          path: isDoctor
+                              ? "assets/icons/bio.svg"
+                              : "assets/icons/payment.svg",
                           goTo: "/home/payment"),
                       Category(
-                          name: "Prescriptions \n & Medication",
-                          path: "assets/icons/prescription.svg",
+                          name: isDoctor
+                              ? "Diagnostics &\n Treatment"
+                              : "Prescriptions \n & Medication",
+                          path: isDoctor
+                              ? "assets/icons/health.svg"
+                              : "assets/icons/prescription.svg",
                           goTo: "/home/prescription"),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Category(

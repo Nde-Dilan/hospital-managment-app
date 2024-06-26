@@ -4,6 +4,7 @@ import 'package:hospital_managment_app/screens/appointments/current_appointments
 import 'package:hospital_managment_app/screens/appointments/set_appointments_page.dart';
 import 'package:hospital_managment_app/screens/auth/signin_screen.dart';
 import 'package:hospital_managment_app/screens/auth/signup_screen.dart';
+import 'package:hospital_managment_app/screens/doctor/welcome_page.dart';
 import 'package:hospital_managment_app/screens/lab/lab_results_page.dart';
 import 'package:hospital_managment_app/screens/lab/lab_test_page.dart';
 import 'package:hospital_managment_app/screens/appointments/appointments.dart';
@@ -65,12 +66,7 @@ class MyApp extends StatelessWidget {
   static final _router = GoRouter(routes: <RouteBase>[
     GoRoute(
       path: '/',
-      builder: (BuildContext context, GoRouterState state) =>
-          const SetAppointmentPage(
-        name: 'Dr. Jenny Wilson',
-        speciality: 'Dental Surgeon',
-        rating: '4.8',
-      ),
+      builder: (BuildContext context, GoRouterState state) => const WelcomeDoctor(),
     ),
     GoRoute(
         path: '/auth',
@@ -88,10 +84,25 @@ class MyApp extends StatelessWidget {
           ),
         ]),
     GoRoute(
-        path: "/home",
-        builder: (BuildContext context, GoRouterState state) =>
-            const HomePage(),
+        path: "/home/:isDoctor",
+        builder: (BuildContext context, GoRouterState state){
+
+          _log.info("This is the value of extra: ${state.pathParameters['isDoctor']}");
+
+    
+          final bool isDoctor = bool.parse(state.pathParameters['isDoctor']!);
+            return  HomePage(isDoctor:isDoctor);
+        },
         routes: [
+          GoRoute(
+            path: "set-appointment",
+            builder: (BuildContext context, GoRouterState state) =>
+                const SetAppointmentPage(
+              name: 'Dr. Jenny Wilson',
+              speciality: 'Dental Surgeon',
+              rating: '4.8',
+            ),
+          ),
           GoRoute(
             path: "notifications",
             builder: (BuildContext context, GoRouterState state) =>

@@ -22,18 +22,11 @@ jobs:
       - run: flutter pub get
       - run: flutter build apk --release --split-per-abi
 
-      - name: Determine Next Version
-        id: next_version
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-        run: |
-          npm install semver
-          echo ::set-output name=next_version::$(semver inc "${{ github.ref_name }}" minor)
-
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*"
-          tag: ${{ steps.next_version.outputs.next_version }}
+          tag: ${{ github.ref_name }}
           token: ${{ secrets.TOKEN }}
+        env:
+          NEXT_VERSION: ${{ steps.next_version.outputs.next_version }}

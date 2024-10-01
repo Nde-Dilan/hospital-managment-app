@@ -21,7 +21,7 @@ class MedicationWidget extends StatefulWidget {
 }
 
 class _MedicationWidgetState extends State<MedicationWidget> {
-  static final _log = Logger('lab_results_page.dart');
+  static final _log = Logger('medication.dart');
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +147,7 @@ class _MedicationWidgetState extends State<MedicationWidget> {
                     },
                     child: Image.asset("assets/icons/edit.png"),
                   ),
-                  SizedBox(width: size.width * .0235692959),
+                  SizedBox(width: size.width * .04235692959),
                   InkWell(
                     onTap: () {
                       _log.info("Deleting an ongoing teatments");

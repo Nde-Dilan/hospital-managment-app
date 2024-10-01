@@ -5,7 +5,6 @@ import 'package:hospital_managment_app/widgets/app_bar.dart';
 import 'package:hospital_managment_app/widgets/lab_test.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/search_input.dart';
-import 'package:provider/provider.dart';
 
 class LabTesPage extends StatelessWidget {
   const LabTesPage({super.key});
@@ -13,12 +12,11 @@ class LabTesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final palette = context.watch<Palette>();
 
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height * .29),
-        child: const CustomAppBar(
+        child:   CustomAppBar(
           topSpacing: 0,
           radius: 20,
           horizontalSpacing: 14,
@@ -29,7 +27,7 @@ class LabTesPage extends StatelessWidget {
           top: 114,
           positionedWidget: SearchInput(
             topSpacing: 90,
-            placeholder: "Search here...",
+            placeholder: "Search here...", handleSearchAction:  (){},
           ),
           spacing: 0,
           bottomSpacing: 0,

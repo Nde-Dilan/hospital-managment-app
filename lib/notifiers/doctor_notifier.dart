@@ -1,5 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital_managment_app/models/doctor.dart';
+import 'package:logging/logging.dart';
+
+
+ final _log = Logger('doctor_notifier.dart');
+
 
 class DoctorNotifier extends ChangeNotifier {
   Doctor _doctor = Doctor(
@@ -14,14 +20,16 @@ class DoctorNotifier extends ChangeNotifier {
     speciality: "Cardiologist",
     rating: "4.8",
     experience: "15 years",
-    about: "Dr. Carly Angel is the top most immunologists specialist in Crist Hospital in London, UK. She achived several awards for her wonderful contribution Read More. . .", review: '322',
+    about:
+        "Dr. Carly Angel is the top most immunologists specialist in Crist Hospital in London, UK. She achived several awards for her wonderful contribution Read More. . .",
+    review: '322',
   );
 
   void setDoctor(Doctor doctor) {
     _doctor = doctor;
     notifyListeners();
   }
-
+ 
   Doctor getDoctor() {
     return _doctor;
   }
@@ -34,7 +42,6 @@ class DoctorNotifier extends ChangeNotifier {
   String get gender => _doctor.gender;
   String get email => _doctor.email;
   String get phoneNumber => _doctor.phoneNumber;
-  String get password => _doctor.password;
   String get speciality => _doctor.speciality;
   String get rating => _doctor.rating;
   String get reviews => _doctor.review;
@@ -77,11 +84,6 @@ class DoctorNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  set password(String newPassword) {
-    _doctor.password = newPassword;
-    notifyListeners();
-  }
-
   set speciality(String newSpeciality) {
     _doctor.speciality = newSpeciality;
     notifyListeners();
@@ -91,6 +93,7 @@ class DoctorNotifier extends ChangeNotifier {
     _doctor.rating = newRating;
     notifyListeners();
   }
+
   set review(String newReview) {
     _doctor.review = newReview;
     notifyListeners();

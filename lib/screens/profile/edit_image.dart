@@ -6,6 +6,7 @@ import 'package:hospital_managment_app/utils/option_list.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
 import 'package:hospital_managment_app/widgets/custom_inkwell.dart';
 import 'package:hospital_managment_app/widgets/responsive_screen.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 
@@ -46,12 +47,16 @@ class EditImagePage extends StatelessWidget {
           rectangularMenuArea: Column(
             children: [
               CustomInkWell(
+                 editImage: true,
+                gallery:ImageSource.gallery,
                 name: editImageOptionList[0]["name"].toString(),
                 onTap: editImageOptionList[0]["onTap"].toString(),
                 style: editImageOptionList[0]["style"] as TextStyle,
                 icon: editImageOptionList[0]["icon"] as IconData,
               ),
               CustomInkWell(
+                editImage: true,
+                gallery:ImageSource.camera,
                 name: editImageOptionList[1]["name"].toString(),
                 onTap: editImageOptionList[1]["onTap"].toString(),
                 style: editImageOptionList[1]["style"] as TextStyle,

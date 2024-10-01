@@ -4,15 +4,22 @@ import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/utils/active_patient_list.dart';
 import 'package:hospital_managment_app/widgets/app_bar.dart';
 import 'package:hospital_managment_app/widgets/search_input.dart';
+import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
+
+    Logger _log = Logger('patients_page.dart');
+
 
 class PatientsPage extends StatelessWidget {
   const PatientsPage({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final palette = context.watch<Palette>();
+
+
     TextStyle specialityStle = TextStyle(
         color: palette.textFade, fontSize: 12, fontWeight: FontWeight.w500);
     TextStyle nameStyle = TextStyle(
@@ -20,7 +27,7 @@ class PatientsPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height * .29),
-        child: const CustomAppBar(
+        child: CustomAppBar(
           introText: "Hi,Welcome Back,",
           topSpacing: 0,
           radius: 20,
@@ -33,6 +40,7 @@ class PatientsPage extends StatelessWidget {
           positionedWidget: SearchInput(
             topSpacing: 90,
             placeholder: "Search here...",
+            handleSearchAction: () {},
           ),
           spacing: 0,
           bottomSpacing: 0,
@@ -153,4 +161,19 @@ class PatientsPage extends StatelessWidget {
       ),
     );
   }
+}
+
+/// This method will get all the active patients associatate with a doctor
+List<Object> getactivePatientList() {
+  return activePatientList;
+}
+
+/// This method will get all the current patients associatate with a doctor
+List<Object> getCurrentPatients() {
+  return activePatientList;
+}
+
+/// Implementation of the search method for patients
+void handleSearch(String query) {
+   _log.info("Searching for patients");
 }

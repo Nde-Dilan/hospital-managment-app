@@ -9,6 +9,8 @@ import 'package:hospital_managment_app/widgets/doctor_hour_container.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
+//TODO: When possible try to refactor this code, it's not okay like that
+
 class PatientPage extends StatelessWidget {
   const PatientPage({super.key, required this.id});
   final int id;

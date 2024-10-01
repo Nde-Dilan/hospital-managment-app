@@ -40,8 +40,12 @@ dependencies:
   provider: ^6.1.2
   flutter_svg: ^2.0.10+1
   carousel_slider: ^4.2.1
-  icons_plus: ^4.0.0
+  icons_plus: ^5.0.0
   image_picker: ^1.1.2
+  firebase_auth: ^5.1.1
+  google_sign_in: ^6.2.1
+  firebase_core: ^3.1.1
+  cloud_firestore: ^5.0.2
   # firebase_auth: ^4.19.6
 
 dev_dependencies:
@@ -53,7 +57,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

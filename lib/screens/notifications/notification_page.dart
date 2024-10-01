@@ -15,7 +15,7 @@ class NotificationPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height * .29),
-        child: const CustomAppBar(
+        child:   CustomAppBar(
           topSpacing: 0,
           radius: 20,
           horizontalSpacing: 14,
@@ -26,7 +26,7 @@ class NotificationPage extends StatelessWidget {
           top: 114,
           positionedWidget: SearchInput(
             topSpacing: 90,
-            placeholder: "Search here...",
+            placeholder: "Search here...", handleSearchAction: ( ){},
           ),
           spacing: 0,
           bottomSpacing: 0,

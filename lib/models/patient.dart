@@ -1,7 +1,7 @@
 import 'package:hospital_managment_app/models/user.dart';
 
 class Patient extends User {
-  final String medicalHistory;
+   String medicalHistory;
   final List<Map<String, String>> appointmentsDate = [
     {"date": "12", "time": "10:00 AM", "day": "Mon"},
     {"date": "14", "time": "11:00 AM", "day": "Tue"},
@@ -20,7 +20,7 @@ class Patient extends User {
     required super.gender,
     required super.email,
     required super.phoneNumber,
-    required super.password,
+    required super.password,   super.role="PATIENT",
   });
 
   String getPatientInformation() {

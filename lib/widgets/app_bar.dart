@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hospital_managment_app/models/doctor.dart';
+import 'package:hospital_managment_app/models/user.dart';
 import 'package:hospital_managment_app/notifiers/Is_doctor_notifier.dart';
 import 'package:hospital_managment_app/notifiers/doctor_notifier.dart';
+import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +12,7 @@ import 'package:provider/provider.dart';
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar(
       {super.key,
-      required this.topSpacing,
+      this.topSpacing = 0,
       required this.radius,
       this.goTo,
       this.top,
@@ -29,9 +31,11 @@ class CustomAppBar extends StatelessWidget {
       required this.mainAxisAlignment,
       this.widthFactor = .7,
       this.containerHeight,
-      this.introText});
+      this.introText,
+      this.toPadding = 0});
 
   /// Spacing from the top of the phone to the stack
+  final double toPadding;
   final double topSpacing;
   final double radius;
 
@@ -53,6 +57,7 @@ class CustomAppBar extends StatelessWidget {
   final String? introText;
 
   /// Name of the client if the page needs it
+  /// final bool isDoctor = context.watch<IsDoctorNotifier>().isDoctor;
   final String? name;
 
   /// Spacing between back button and [title]
@@ -82,14 +87,12 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final Size size = MediaQuery.of(context).size;
-
-    final bool isDoctor = context.watch<IsDoctorNotifier>().isDoctor;
-
-    Doctor doctor = context.watch<DoctorNotifier>().getDoctor();
+    User user = context.watch<UserNotifier>().getUser();
 
     return Stack(
       children: [
         Container(
+          padding: EdgeInsets.only(top: toPadding),
           margin: EdgeInsets.only(top: topSpacing),
           height: containerHeight ??
               (MediaQuery.of(context).size.height * 0.25) + bottomSpacing,
@@ -126,11 +129,11 @@ class CustomAppBar extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                   introText!=null ? introText! : "View Appointments,",
+                  introText != null ? introText! : "View Appointments,",
                   style: TextStyle(fontSize: 14, color: palette.trueWhite),
                 ),
                 Text(
-                  isDoctor ? doctor.name : "John Doe William",
+                  user.name,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,

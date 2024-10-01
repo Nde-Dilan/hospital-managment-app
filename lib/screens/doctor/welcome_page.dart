@@ -58,20 +58,23 @@ class WelcomeDoctor extends StatelessWidget {
             ),
             SizedBox(height: size.width * 0.039),
             CustomButton(
-                text: "Sing In As Admin",
+                text: "Sing In As Doctor",
                 radius: 15,
                 onTap: () {
-                  GoRouter.of(context).go("/home");
+                   const isDoctor = true;
+                Provider.of<IsDoctorNotifier>(context,listen:false).setIsDoctor(isDoctor);
+
+                  GoRouter.of(context).go("/auth");
                 }),
             SizedBox(height: size.width * 0.082509),
             CustomButton(
-              text: "Sing In As Doctor",
+              text: "Sing In As Patient",
               radius: 15,
               onTap: () {
-                const isDoctor = true;
-                Provider.of<IsDoctorNotifier>(context).setIsDoctor(isDoctor);
+                const isDoctor = false;
+                Provider.of<IsDoctorNotifier>(context,listen:false).setIsDoctor(isDoctor);
 
-                GoRouter.of(context).go("/home");
+                GoRouter.of(context).go("/auth");
               },
             ),
           ],

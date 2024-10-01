@@ -13,7 +13,7 @@ class Doctor extends User {
     required this.rating,
     required this.review,
     required this.experience,
-    required this.about, required super.name, required super.location, required super.image, required super.age, required super.gender, required super.email, required super.phoneNumber, required super.password,
+    required this.about, required super.name, required super.location, required super.image, required super.age, required super.gender, required super.email, required super.phoneNumber, required super.password,super.role="DOCTOR"
   });
 
 }

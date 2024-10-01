@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hospital_managment_app/models/doctor.dart';
-import 'package:hospital_managment_app/models/patient.dart';
 import 'package:hospital_managment_app/notifiers/Is_doctor_notifier.dart';
+import 'package:hospital_managment_app/notifiers/patient_notifier.dart';
 import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/notifiers/doctor_notifier.dart';
 import 'package:hospital_managment_app/screens/appointments/current_appointments.dart';
@@ -24,9 +23,11 @@ import 'package:hospital_managment_app/screens/prescriptions/prescription_page.d
 import 'package:hospital_managment_app/screens/profile/edit_image.dart';
 import 'package:hospital_managment_app/screens/profile/personal_details.dart';
 import 'package:hospital_managment_app/screens/profile/profile.dart';
-import 'package:hospital_managment_app/screens/welcome_screen.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/wrapper/app_lifecycle.dart';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 //Since using print() will reduce the app's performance we can use this
 import 'package:logging/logging.dart';
@@ -42,7 +43,10 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   if (kDebugMode) {
     // Log more when in debug mode.
     Logger.root.level = Level.FINE;
@@ -62,6 +66,11 @@ void main() async {
     SystemUiMode.manual,
     overlays: [SystemUiOverlay.top],
   );
+
+
+  
+  _log.info('Initializing Firebase&Firestore db done without errors');
+
   runApp(const MyApp());
 }
 
@@ -74,7 +83,7 @@ class MyApp extends StatelessWidget {
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) =>
-          const PatientsPage(),
+          const HomePage( ),
     ),
     GoRoute(
         path: '/auth',
@@ -82,9 +91,9 @@ class MyApp extends StatelessWidget {
             const SignInScreen(),
         routes: [
           GoRoute(
-            path: 'sign-in',
+            path: 'sign-up',
             builder: (BuildContext context, GoRouterState state) =>
-                const SignInScreen(),
+                const SignUpScreen(),
           ),
           GoRoute(
             path: 'forgot-password',
@@ -94,12 +103,10 @@ class MyApp extends StatelessWidget {
     GoRoute(
         path: "/home",
         builder: (BuildContext context, GoRouterState state) {
-          final bool isDoctor = context.watch<IsDoctorNotifier>().isDoctor;
-          
-          return HomePage(isDoctor: isDoctor);
+
+          return const HomePage();
         },
         routes: [
-
           GoRoute(
             path: "set-appointment",
             builder: (BuildContext context, GoRouterState state) =>
@@ -115,19 +122,18 @@ class MyApp extends StatelessWidget {
                 const NotificationPage(),
           ),
           GoRoute(
-            path: "patient-details",
-            builder: (BuildContext context, GoRouterState state) =>
-                const PatientsPage(),
-            routes: [
-              GoRoute(path: 'single-patient/:id',
-                  builder: (BuildContext context, GoRouterState state) {
-
-                    ///Get the ID of the patient we click on and open the details of that patient
-                final int id = int.parse(state.pathParameters['id']!);
-                return PatientPage(id: id);
-              }),
-              ]
-          ),
+              path: "patient-details",
+              builder: (BuildContext context, GoRouterState state) =>
+                  const PatientsPage(),
+              routes: [
+                GoRoute(
+                    path: 'single-patient/:id',
+                    builder: (BuildContext context, GoRouterState state) {
+                      ///Get the ID of the patient we click on and open the details of that patient
+                      final int id = int.parse(state.pathParameters['id']!);
+                      return PatientPage(id: id);
+                    }),
+              ]),
           GoRoute(
               path: 'profile',
               builder: (BuildContext context, GoRouterState state) =>
@@ -207,7 +213,7 @@ class MyApp extends StatelessWidget {
           ),
           GoRoute(
             path: 'downloads',
-            builder: (context, state) => const CurrentAppointmentsPage(),
+            builder: (context, state) => const LabResultPage(),
           ),
         ]),
   ]);
@@ -222,6 +228,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => IsDoctorNotifier()),
           ChangeNotifierProvider(create: (_) => UserNotifier()),
+          ChangeNotifierProvider(create: (_) => PatientNotifier()),
           ChangeNotifierProvider(create: (_) => DoctorNotifier()),
 
           ///

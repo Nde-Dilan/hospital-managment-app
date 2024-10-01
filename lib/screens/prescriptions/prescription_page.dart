@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_managment_app/models/user.dart';
+import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/screens/prescriptions/medication.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/utils/medication_list.dart';
@@ -15,6 +17,7 @@ class PrescriptionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final palette = context.watch<Palette>();
+    User user = context.watch<UserNotifier>().getUser();
 
     TextStyle headerStyle = TextStyle(
         fontSize: 20, fontWeight: FontWeight.w500, color: palette.textDark);
@@ -24,18 +27,22 @@ class PrescriptionPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(size.height * .29),
-        child: const CustomAppBar(
+        child: CustomAppBar(
           topSpacing: 0,
           radius: 20,
           horizontalSpacing: 14,
           widthFactor: .558,
           fontSize: 20,
-          title: "Prescription & Medication ",
+          introText: "Set Your reminders,",
+          title: user.role == "DOCTOR"
+              ? "Diagnostics &\n Treatment"
+              : "Prescriptions \n & Medication",
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           top: 114,
           positionedWidget: SearchInput(
             topSpacing: 90,
             placeholder: "Search here...",
+            handleSearchAction: () {},
           ),
           spacing: 0,
           bottomSpacing: 0,
@@ -101,7 +108,6 @@ class PrescriptionPage extends StatelessWidget {
               itemCount: medicationList.length,
               itemBuilder: (context, index) {
                 //TODO: Get the medication  data from the API and render it accordingly
-
                 return MedicationWidget(
                   name: medicationList[index]["name"].toString(),
                   dailyDose: medicationList[index]["dailyDose"].toString(),
@@ -116,4 +122,8 @@ class PrescriptionPage extends StatelessWidget {
       ),
     );
   }
+}
+
+List<Object> getMedicationForUser() {
+  return medicationList;
 }

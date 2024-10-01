@@ -5,11 +5,17 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 class SearchInput extends StatefulWidget {
-  const SearchInput({super.key, this.topSpacing, this.placeholder, this.leftSpacing});
+  const SearchInput(
+      {super.key,
+      this.topSpacing,
+      this.placeholder,
+      this.leftSpacing,
+      required this.handleSearchAction});
 
   final double? topSpacing;
   final double? leftSpacing;
   final String? placeholder;
+  final Function handleSearchAction;
   @override
   State<SearchInput> createState() => _SearchInputState();
 }
@@ -31,7 +37,10 @@ class _SearchInputState extends State<SearchInput> {
           height: widget.topSpacing,
         ),
         Container(
-          margin:  EdgeInsets.only(top: 17, left: widget.leftSpacing!= null ? widget.leftSpacing!: 17, right: 2),
+          margin: EdgeInsets.only(
+              top: 17,
+              left: widget.leftSpacing != null ? widget.leftSpacing! : 17,
+              right: 2),
           width: 300,
           height: 56,
           decoration: BoxDecoration(
@@ -44,6 +53,9 @@ class _SearchInputState extends State<SearchInput> {
             ],
           ),
           child: TextField(
+            onSubmitted: (value) {
+              widget.handleSearchAction(value);
+            },
             decoration: InputDecoration(
                 hintText: widget.placeholder,
                 prefixIcon: Padding(

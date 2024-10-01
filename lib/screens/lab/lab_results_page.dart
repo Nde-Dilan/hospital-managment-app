@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/widgets/app_bar.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
@@ -17,6 +18,7 @@ class LabResultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final palette = context.watch<Palette>();
+    _log.shout("Show yourself");
 
     TextStyle titleStyle = TextStyle(
         fontSize: 36, fontWeight: FontWeight.w900, color: palette.trueWhite);
@@ -38,12 +40,14 @@ class LabResultPage extends StatelessWidget {
                   horizontalSpacing: 14,
                   widthFactor: .558,
                   fontSize: 20,
+                  introText: "View your Lab Results,",
                   title: "Lab Results",
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   top: 114,
-                  positionedWidget: const SearchInput(
+                  positionedWidget: SearchInput(
                     topSpacing: 90,
                     placeholder: "Search here...",
+                    handleSearchAction: () {},
                   ),
                   spacing: 0,
                   bottomSpacing: 0,
@@ -138,17 +142,21 @@ class LabResultPage extends StatelessWidget {
                                         fontWeight: FontWeight.w500,
                                         color: palette.textDark),
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      _log.info("Downloading the results");
-                                    },
-                                    child: Container(
-                                      padding:
-                                          EdgeInsets.all(size.width * .009),
-                                      decoration: BoxDecoration(
-                                          color: palette.violet,
-                                          borderRadius:
-                                              BorderRadius.circular(9)),
+                                  SizedBox(
+                                    width: size.width * 0.29,
+                                    height: size.width * 0.109,
+                                    child: TextButton(
+                                      //padding: EdgeInsets.all(size.width * .009),
+                                      // decoration: BoxDecoration(
+
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                palette.violet),
+                                      ),
+                                      onPressed: () {
+                                        _log.shout("Downloading the results");
+                                      },
                                       child: Text(
                                         "Download",
                                         style: tagStyle,

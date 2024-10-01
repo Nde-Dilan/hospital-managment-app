@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hospital_managment_app/models/user.dart';
+import 'package:hospital_managment_app/notifiers/Is_doctor_notifier.dart';
+import 'package:hospital_managment_app/notifiers/doctor_notifier.dart';
+import 'package:hospital_managment_app/notifiers/patient_notifier.dart';
 import 'package:hospital_managment_app/notifiers/user_notifier.dart';
 import 'package:hospital_managment_app/styles/palette.dart';
 import 'package:hospital_managment_app/widgets/bottom_nav_bar.dart';
@@ -10,21 +13,22 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.isDoctor});
-  final bool isDoctor;
+  const HomePage({super.key});
 
   static final _log = Logger('home_page.dart');
 
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
-    final User user = context.watch<UserNotifier>().getUser();
+
+    User user = context.watch<UserNotifier>().getUser();
+     
     const double radius = 30.0;
     const double smallRadius = 18.0;
     final double screenWidth = MediaQuery.of(context).size.width;
 
     _log.info(
-        "Painting the top and bottom layout with a value of IsDoctor set to $isDoctor");
+        "Painting the top and bottom layout with a value of ROLE set to ${user.role}");
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: palette.trueWhite,
@@ -90,10 +94,10 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Positioned(
+                  Positioned(
                     top: 108,
                     child: SearchInput(
-                        placeholder: "Search here...", leftSpacing: 57)),
+                        placeholder: "Search here...", leftSpacing: 57, handleSearchAction:  (){},)),
                 Positioned(
                     top: 5,
                     child: HeroText(
@@ -113,13 +117,15 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Category(
-                          name: isDoctor ? "Your Appointments" : "Appointments",
+                          name: user.role == "DOCTOR" ? "Your Appointments" : "Appointments",
                           path: "assets/icons/appointments.svg",
-                          goTo: "/home/appointements"),
+                          goTo: "/home/appointments"),
                       Category(
-                          name: isDoctor ? "Patients Lab Test" : "Lab Test",
+                          name: user.role == "DOCTOR" ? "Patients Lab Test" : "Lab Test",
                           path: "assets/icons/lab-test.svg",
-                          goTo: isDoctor ? "/home/patient-details" :"/home/lab-test"),
+                          goTo: user.role == "DOCTOR"
+                              ? "/home/patient-details"
+                              : "/home/lab-test"),
                     ],
                   ),
                   const SizedBox(
@@ -129,19 +135,21 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Category(
-                          name: isDoctor ? "Your Biography" : "Payment",
-                          path: isDoctor
+                          name: user.role == "DOCTOR" ? "Your Biography" : "Payment",
+                          path: user.role == "DOCTOR"
                               ? "assets/icons/bio.svg"
                               : "assets/icons/payment.svg",
-                          goTo: isDoctor ? "/home/appointments/my-appointment" : "/home/payment"),
+                          goTo: user.role == "DOCTOR"
+                              ? "/home/appointments/my-appointment"
+                              : "/home/payment"),
                       Category(
-                          name: isDoctor
+                          name: user.role == "DOCTOR"
                               ? "Diagnostics &\n Treatment"
                               : "Prescriptions \n & Medication",
-                          path: isDoctor
+                          path: user.role == "DOCTOR"
                               ? "assets/icons/health.svg"
                               : "assets/icons/prescription.svg",
-                          goTo: "/home/prescription"),
+                          goTo: "/home/prescriptions"),
                     ],
                   ),
                   const SizedBox(

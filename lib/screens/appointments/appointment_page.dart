@@ -36,10 +36,10 @@ class Appointmentpage extends StatelessWidget {
       phoneNumber: '694525931',
       password: '123456789',
     );
-
+    //Instead just get the rest of info using what the current user have, get the extra info from firebase 
     Doctor doctor = context.watch<DoctorNotifier>().getDoctor();
 
-    final bool isDoctor = context.watch<IsDoctorNotifier>().isDoctor;
+    User user = context.watch<UserNotifier>().getUser();
 
     return Scaffold(
       appBar: PreferredSize(
@@ -50,12 +50,14 @@ class Appointmentpage extends StatelessWidget {
           horizontalSpacing: 14,
           widthFactor: .558,
           fontSize: 20,
-          title: isDoctor ? "My Biography " : "My Appointments",
+          title: user.role == 'DOCTOR' ? "My Biography " : "My Appointments",
+          introText: "Your Biography,",
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           top: 114,
-          positionedWidget: const SearchInput(
+          positionedWidget: SearchInput(
             topSpacing: 90,
             placeholder: "Search here...",
+            handleSearchAction: () {},
           ),
           spacing: 0,
           bottomSpacing: 0,
@@ -72,7 +74,7 @@ class Appointmentpage extends StatelessWidget {
                 Container(
                     margin: EdgeInsets.symmetric(horizontal: size.width * .058),
                     child: Image.asset(
-                      doctor.image,
+                      user.image,
                     )),
                 SizedBox(
                   height: size.height * .013,
@@ -84,7 +86,7 @@ class Appointmentpage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          doctor.name,
+                          user.name,
                           style: nameStyle,
                         ),
                         Text(

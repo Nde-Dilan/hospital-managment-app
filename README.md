@@ -1,6 +1,7 @@
-# 5B&B Medicals - Electronic Medical Records System 🏥
+# Full Medical App - Electronic Medical Records System 🏥
 
-A comprehensive Electronic Medical Records (EMR) system designed to streamline healthcare management and improve patient care delivery.
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-blue.svg)](https://flutter.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
 ![EMR Dashboard](https://via.placeholder.com/800x400?text=EMR+Dashboard+Preview)
 
